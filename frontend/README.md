@@ -27,6 +27,7 @@
 
 5. **Ao finalizar as modificações e testar a feature**, volte para o diretório root, faça um commit e envie as suas modificações para o GitHub:
     ```bash
+    cd ../..    #volta para o diretório root
     git add . # Adicionando todos os arquivos modificados
     git commit -m "<ação>:<descrição simples sobre o que foi feito aqui>" # Explicação abaixo
     git push --set-upstream origin <branch_name>
