@@ -21,7 +21,7 @@ Esse sistema atende às necessidades de uma rede de cinemas moderna, facilitando
 - **Tecnologias**: Python e PostgreSQL.
 
 ### Documentação
-- **[Documentação](https://github.com/AdryelliReiz/tree/main/USP_BD1/docs)**: Inclui os arquivos referentes ao DER (Diagrama Entidade-Relacionamento) e ao modelo lógico do banco de dados, oferecendo uma visão clara da estrutura do sistema.
+- **[Documentação](https://github.com/AdryelliReiz/USP_BD1/tree/main/docs)**: Inclui os arquivos referentes ao DER (Diagrama Entidade-Relacionamento) e ao modelo lógico do banco de dados, oferecendo uma visão clara da estrutura do sistema.
 
 ### Front-end
 - **[Dashboard](https://github.com/AdryelliReiz/USP_BD1/tree/main/frontend/dashboard)**: Interface de gerenciamento que permite visualizar relatórios e administrar dados do cinema.
