@@ -1,2 +1,46 @@
-# USP_BD1
-Trabalho da disciplina de Bando de Dados
+# 🎬 Documentação do Projeto de Banco de Dados 1
+
+## 📚 Introdução
+A disciplina de Banco de Dados 1 introduz conceitos essenciais de modelagem de banco de dados com boas práticas, preparando os alunos para desafios no mercado de trabalho.
+
+## 🎯 Objetivo
+O objetivo deste trabalho é aplicar os conceitos aprendidos em sala de aula, com orientação do(a) professor(a), por meio da criação de um cenário (mini mundo), levantamento de requisitos de dados, modelagem de banco de dados e desenvolvimento de um sistema que consuma essas informações.
+
+## 🏢 Contexto do Projeto
+Nosso cenário é uma **rede de cinemas**. Criamos um sistema responsável pelo:
+- **Gerenciamento da rede** via dashboard,
+- **Venda de ingressos** por totens, e
+- **Cadastro de clientes** em um site intuitivo.
+
+Esse sistema atende às necessidades de uma rede de cinemas moderna, facilitando o gerenciamento e melhorando a experiência do cliente.
+
+## 🛠️ Estrutura do Projeto
+
+### Back-end
+- **[API](https://github.com/AdryelliReiz/USP_BD1/backend)**: API responsável por realizar consultas ao banco de dados e fornecer os dados necessários ao sistema.
+- **Tecnologias**: Python e PostgreSQL.
+
+### Documentação
+- **[Documentação](https://github.com/AdryelliReiz/USP_BD1/docs)**: Inclui os arquivos referentes ao DER (Diagrama Entidade-Relacionamento) e ao modelo lógico do banco de dados, oferecendo uma visão clara da estrutura do sistema.
+
+### Front-end
+- **[Dashboard](https://github.com/AdryelliReiz/USP_BD1/frontend/dashboard)**: Interface de gerenciamento que permite visualizar relatórios e administrar dados do cinema.
+- **[Totem](https://github.com/AdryelliReiz/USP_BD1/frontend/totem)**: Interface voltada ao cliente, permitindo a compra de ingressos de maneira simples e intuitiva.
+
+## 📂 Estrutura de Diretórios
+
+```plaintext
+USP_BD1/
+├── backend/                # API e lógica de negócios
+├── docs/                   # Documentação e modelos de dados
+└── frontend/
+    ├── dashboard/          # Interface de administração
+    └── totem/              # Interface de compra de ingressos
+
+```
+## 👥 Equipe de Desenvolvimento
+
+- **[Adryelli Reis dos Santos](https://github.com/AdryelliReiz)**
+- **[André Vieira Rocha](https://github.com/AndreRochaV)**
+- **[Gabriel Monteiro de Souza](https://github.com/SirMonteiro)**
+- **[João Pedro Barbosa](https://github.com/Joauww16)**
