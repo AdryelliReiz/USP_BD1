@@ -24,28 +24,29 @@ INSERT INTO "cliente" (
 ('paulo-dasneves90@predialnet.com.br', 11998536677, '70835652289', 'Paulo Carlos Leonardo', 'das Neves', 'Rua Luiz Rosa da Costa', 404, NULL, '08753342', 'LtQYBMiPuE'),
 ('raquelpatriciacosta@hersa.com.br', 11984704262, '22832143601', 'Raquel Patrícia Elaine', 'Costa', 'Rua Santa Madalena', 423, NULL, '07996030', 'Brg1H6FzS4');
 
-INSERT INTO filme (titulo, ano, diretor, class_ind, idioma, duracao, eh_dub, fim_contrato)
+INSERT INTO filme (titulo, ano, diretor, class_ind, idioma, duracao, eh_dub, fim_contrato, descricao)
 VALUES
-('In the Mood for Love', 2000, 'Wong Kar Wai', 12, 'Chinês', '01:39:00', FALSE, '2024-12-31'),
-('Drive My Car', 2021, 'Ryusuke Hamaguchi', 16, 'Japonês', '02:59:00', FALSE, '2024-12-31'),
-('Little Women', 2019, 'Greta Gerwig', 10, 'Inglês', '01:39:00', FALSE, '2024-12-31'),
-('Call Me by Your Name', 2017, 'Luca Guadagnino', 10, 'Inglês', '02:12:00', FALSE, '2024-12-31'),
-('Past Lives', 2023, 'Celine Song', 12, 'Coreano', '01:45:00', FALSE, '2024-12-31'),
-('Paterson', 2023, 'Celine Song', 12, 'Inglês', '01:58:00', FALSE, '2024-12-31'),
-('The Outsiders', 1983, 'Francis Ford Coppola', 14, 'Inglês', '01:45:00', FALSE, '2024-12-31'),
-('RRR', 2022, 'S. S. Rajamouli', 16, 'Telugu', '03:05:00', FALSE, '2024-12-31'),
-('Paper Moon', 1973, 'Peter Bogdanovich', 14, 'Inglês', '01:42:00', FALSE, '2024-12-31'),
-('Godzilla Minus One', 2023,'Takashi Yamazaki', 16, 'Japonês', '02:04:00', FALSE, '2024-12-31'),
-('Parasite', 2019, 'Bong Joon Ho', 16, 'Coreano', '02:12:00', FALSE, '2024-12-31'),
-('The Grand Budapest Hotel', 2014, 'Wes Anderson', 14, 'Inglês', '01:39:00', FALSE, '2024-12-31'),
-('Portrait of a Lady on Fire', 2019, 'Céline Sciamma', 14, 'Francês', '02:00:00', FALSE, '2024-12-31'),
-('Amélie', 2001, 'Jean-Pierre Jeunet', 12, 'Francês', '02:02:00', FALSE, '2024-12-31'),
-('Cinema Paradiso', 1988, 'Giuseppe Tornatore', 12, 'Italiano', '02:35:00', FALSE, '2024-12-31'),
-('The Handmaiden', 2016, 'Park Chan-wook', 18, 'Coreano', '02:25:00', FALSE, '2024-12-31'),
-('City of God', 2002, 'Fernando Meirelles', 18, 'Português', '02:10:00', FALSE, '2024-12-31'),
-('Spirited Away', 2001, 'Hayao Miyazaki', 10, 'Japonês', '02:05:00', FALSE, '2024-12-31'),
-('The Farewell', 2019, 'Lulu Wang', 10, 'Inglês', '01:40:00', FALSE, '2024-12-31'),
-('Memories of Murder', 2003, 'Bong Joon Ho', 16, 'Coreano', '02:11:00', FALSE, '2024-12-31');
+('In the Mood for Love', 2000, 'Wong Kar Wai', 12, 'Chinês', '01:39:00', FALSE, '2024-12-31', 'Um homem e uma mulher descobrem que seus parceiros estão tendo um caso e desenvolvem uma amizade complexa.'),
+('Drive My Car', 2021, 'Ryusuke Hamaguchi', 16, 'Japonês', '02:59:00', FALSE, '2024-12-31', 'Um diretor de teatro processa a dor e perda enquanto ensaia uma peça em Hiroshima.'),
+('Little Women', 2019, 'Greta Gerwig', 10, 'Inglês', '01:39:00', FALSE, '2024-12-31', 'Quatro irmãs buscam suas aspirações em meio às dificuldades da Guerra Civil Americana.'),
+('Call Me by Your Name', 2017, 'Luca Guadagnino', 10, 'Inglês', '02:12:00', FALSE, '2024-12-31', 'Um jovem descobre o amor e a paixão durante o verão na Itália.'),
+('Past Lives', 2023, 'Celine Song', 12, 'Coreano', '01:45:00', FALSE, '2024-12-31', 'Amigos de infância se reencontram anos depois e refletem sobre o passado e escolhas.'),
+('Paterson', 2023, 'Celine Song', 12, 'Inglês', '01:58:00', FALSE, '2024-12-31', 'A vida de um motorista de ônibus e poeta em uma cidade pacata.'),
+('The Outsiders', 1983, 'Francis Ford Coppola', 14, 'Inglês', '01:45:00', FALSE, '2024-12-31', 'Grupos de jovens de classes sociais opostas enfrentam tensões em uma pequena cidade americana.'),
+('RRR', 2022, 'S. S. Rajamouli', 16, 'Telugu', '03:05:00', FALSE, '2024-12-31', 'Dois revolucionários lutam pela liberdade contra o Império Britânico na Índia.'),
+('Paper Moon', 1973, 'Peter Bogdanovich', 14, 'Inglês', '01:42:00', FALSE, '2024-12-31', 'Um vigarista e uma menina de 9 anos formam uma dupla improvável nas estradas do Kansas.'),
+('Godzilla Minus One', 2023, 'Takashi Yamazaki', 16, 'Japonês', '02:04:00', FALSE, '2024-12-31', 'Godzilla ameaça a reconstrução do Japão após a Segunda Guerra Mundial.'),
+('Parasite', 2019, 'Bong Joon Ho', 16, 'Coreano', '02:12:00', FALSE, '2024-12-31', 'Uma família pobre se infiltra na vida de uma família rica com consequências inesperadas.'),
+('The Grand Budapest Hotel', 2014, 'Wes Anderson', 14, 'Inglês', '01:39:00', FALSE, '2024-12-31', 'Aventuras excêntricas em um luxuoso hotel europeu durante a guerra.'),
+('Portrait of a Lady on Fire', 2019, 'Céline Sciamma', 14, 'Francês', '02:00:00', FALSE, '2024-12-31', 'Uma pintora e sua modelo se envolvem em um romance proibido na França do século XVIII.'),
+('Amélie', 2001, 'Jean-Pierre Jeunet', 12, 'Francês', '02:02:00', FALSE, '2024-12-31', 'Uma jovem tímida decide fazer boas ações e mudar a vida das pessoas ao seu redor.'),
+('Cinema Paradiso', 1988, 'Giuseppe Tornatore', 12, 'Italiano', '02:35:00', FALSE, '2024-12-31', 'Um cineasta relembra sua infância em um pequeno cinema italiano.'),
+('The Handmaiden', 2016, 'Park Chan-wook', 18, 'Coreano', '02:25:00', FALSE, '2024-12-31', 'Uma trama de engano e paixão se desenrola entre uma rica herdeira e sua criada.'),
+('City of God', 2002, 'Fernando Meirelles', 18, 'Português', '02:10:00', FALSE, '2024-12-31', 'História de jovens em uma favela violenta do Rio de Janeiro nos anos 70.'),
+('Spirited Away', 2001, 'Hayao Miyazaki', 10, 'Japonês', '02:05:00', FALSE, '2024-12-31', 'Uma menina fica presa em um mundo mágico e precisa encontrar uma maneira de salvar seus pais.'),
+('The Farewell', 2019, 'Lulu Wang', 10, 'Inglês', '01:40:00', FALSE, '2024-12-31', 'Uma jovem lida com a doença da avó em um plano familiar de mantê-la sem saber.'),
+('Memories of Murder', 2003, 'Bong Joon Ho', 16, 'Coreano', '02:11:00', FALSE, '2024-12-31', 'Investigadores tentam resolver uma série de assassinatos em uma pequena cidade sul-coreana.');
+
 
 INSERT INTO genero (nome)
 VALUES
