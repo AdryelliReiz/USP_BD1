@@ -427,7 +427,7 @@ INSERT INTO "gerente" (email, senha, cpf) VALUES
 ('pedrohenriqueassuncao@2emesconstrutora.com.br', 'UXeCjbXMhs', '46790330615');
 
 INSERT INTO "administrador" (email, senha, cpf) VALUES
-('vinicius-lima98@sp.gov.br', 'PBlRMiJ2b7', '68239079750'),
+('vinicius-lima98@sp.gov.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$cFJXVDVEeDAzY3lXTktla2p4MGdldw$3ncVGiPX3uxNH35uWxP2XikPygmPqudXI1J10QNWVFA', '68239079750'),
 ('sophie_sara_cortereal@51hotmail.com', 'GWgBU1S1fp', '79060892356'),
 ('marlene.daiane.mendes@focusgrafica.com.br', 'JfBxiLUu5p', '60261456059'),
 ('louise_mariane_teixeira@abdalathomaz.adv.br', 'oz6PLnsGJh', '97035443983'),
