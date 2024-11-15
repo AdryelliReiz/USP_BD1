@@ -2,6 +2,8 @@
 import { useFormState, useFormStatus } from 'react-dom'
 import { signup } from '@/app/actions/auth'
 
+import '@/styles/pages/login.scss'
+
 export default function Login() {
     const [state, action] = useFormState(signup, undefined)
     const { pending } = useFormStatus()
@@ -12,29 +14,23 @@ export default function Login() {
                 <h1>CINEACH | DASHBOARD</h1>
                 
                 <div className="form-container">
+                    <h2>LOGIN</h2>
+                    <span className='divisor' />
                     <form action={action}>
                         <div>
                             <label htmlFor="email">E-mail</label>
-                            <input id="email" name="email" placeholder="Email" />
+                            <input id="email" name="email" placeholder="Digite o seu e-mail" />
+                            {state?.errors?.email && <p className="error-message">{state.errors.email}</p>}
                         </div>
-                        {state?.errors?.email && <p>{state.errors.email}</p>}
                     
                         <div>
                             <label htmlFor="password">Senha</label>
-                            <input id="password" name="password" type="password" />
+                            <input id="password" name="password" type="password" placeholder='Digite a sua senha' />
+                            {state?.errors?.password && <p className="error-message">{state.errors.password}</p>}
                         </div>
-                        {state?.errors?.password && (
-                            <div>
-                            <p>Password must:</p>
-                            <ul>
-                                {state.errors.password.map((error) => (
-                                <li key={error}>- {error}</li>
-                                ))}
-                            </ul>
-                            </div>
-                        )}
+
                         <button disabled={pending} type="submit">
-                            Entrar
+                            ENTRAR
                         </button>
                     </form>
                 </div>
