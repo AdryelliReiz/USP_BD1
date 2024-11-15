@@ -12,7 +12,7 @@ class ExampleView(ViewSet):
     def list(self, request):
         query = "SELECT * FROM cinema"
         client_data = RawSQLHelper.execute_query(query)
-        print(make_password("123"))
+        # print(make_password("123"))
         return Response(client_data)
 
     # GET /cinemas/<id>
