@@ -36,9 +36,9 @@ export async function signup(state: FormState, formData: FormData) {
         }
     }*/
 
-    //const token_de_teste_gerente = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRyeSBBRE0iLCJ0eXBlIjoiZ2VyZW50ZSIsInVzZXJJZCI6IjExMTEifQ.emMJGkst4zUBuLvJupr2DUokn_D1ueJ0-7j_PTAAZes"
+    const response = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRyeSBBRE0iLCJ0eXBlIjoiZ2VyZW50ZSIsInVzZXJJZCI6IjExMTEifQ.emMJGkst4zUBuLvJupr2DUokn_D1ueJ0-7j_PTAAZes"
     // esse response é o token de acesso do Admin
-    const response = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRyeSBBRE0iLCJ0eXBlIjoiYWRtaW4iLCJ1c2VySWQiOiIxMTExIn0.TsFZ_RQvDX_xEw5Ph8jVVzNDl3Aezw-WW_9JTsbyNTs"
+    //const response = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRyeSBBRE0iLCJ0eXBlIjoiYWRtaW4iLCJ1c2VySWQiOiIxMTExIn0.TsFZ_RQvDX_xEw5Ph8jVVzNDl3Aezw-WW_9JTsbyNTs"
     const access_token = response//response.data.access_token;
 
     await createSession(access_token)
