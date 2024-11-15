@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import "@/styles/globals.scss";
 import { SessionProvider } from "@/context/sessionContext";
 import SideBar from "@/components/SideBar";
 
+import "@/styles/globals.scss";
+import "@/styles/pages/dashboard.scss";
 
 export const metadata: Metadata = {
-  title: "ADMIN | Dashboard",
-  description: "Painel de controle do ADMIN",
+  title: "Dashboard",
+  description: "Painel de controle do sistema",
 };
 
 export default function RootLayout({
@@ -19,7 +20,9 @@ export default function RootLayout({
         <SessionProvider>
             <body>
                 <SideBar />
-                {children}
+                <main>
+                  {children}
+                </main>
             </body>
         </SessionProvider>
     </html>

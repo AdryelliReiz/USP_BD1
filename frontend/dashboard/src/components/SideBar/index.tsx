@@ -1,13 +1,15 @@
 'use client'
 import { logout } from "@/app/actions/auth";
-import { useSession } from "@/context/sessionContext";
+import { BiLogOut } from "react-icons/bi";
+
+import './styles.scss';
 
 export default function SideBar() {
-    const { sessionUser } = useSession();
     return (
         <div className="sidebar-container">
-            <p>{sessionUser?.name} | {sessionUser?.type}</p>
-            <button onClick={logout} >Logout</button>
+            <button onClick={logout} >
+                <BiLogOut size={24} />
+            </button>
         </div>
     )
 }

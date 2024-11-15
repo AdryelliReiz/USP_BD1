@@ -9,7 +9,7 @@ export type ISession = {
 
 // Rotas protegidas e específicas
 const protectedRoutes = ['/dashboard'];
-const gerenteAllowedRoutes = ['/dashboard/cinema']; // Rotas permitidas para gerente
+const gerenteAllowedRoutes = ['/dashboard/cinemas/']; // Rotas permitidas para gerente
 
 export default async function middleware(req: NextRequest) {
     const path = req.nextUrl.pathname;
@@ -54,7 +54,8 @@ export default async function middleware(req: NextRequest) {
             path.startsWith(route)
         );
         if (!isAllowedForGerente) {
-            return NextResponse.redirect(new URL('/dashboard/cinema', req.nextUrl));
+            const cinemaId = "1"
+            return NextResponse.redirect(new URL(`/dashboard/cinemas/${cinemaId}`, req.nextUrl));
         }
         return NextResponse.next();
     }
