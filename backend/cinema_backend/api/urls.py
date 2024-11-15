@@ -4,6 +4,9 @@ from .views import *
 
 router = routers.DefaultRouter()
 
+# Example route
+router.register(r'example', ExampleView, basename='example')
+
 # Authentication & Login
 
 router.register(r'admin/login', AdminLoginView, basename='admin-login')

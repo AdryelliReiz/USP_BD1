@@ -24,7 +24,7 @@ CREATE TABLE "pontos" (
   "cliente_id" varchar(11),
   PRIMARY KEY ("data", "hora", "cliente_id")
 );
-
+ 
 CREATE TABLE "ingresso" (
   "tipo" smallint,
   "id" serial PRIMARY KEY,
@@ -55,7 +55,8 @@ CREATE TABLE "filme" (
   "idioma" varchar(50),
   "duracao" time,
   "eh_dub" boolean,
-  "fim_contrato" date
+  "fim_contrato" date,
+  "descricao" varchar(255)
 );
 
 CREATE TABLE "genero_filme" (
