@@ -1,18 +1,20 @@
-import { useContext } from "react"
+import { useContext } from "react";
 import { InformationsContext } from "./contexts/informationsProvider"
+import Welcome from "./templates/welcome";
+import Tickets from "./templates/tickets";
 
 function App() {
-	const {CPF, setCPF} = useContext(InformationsContext)
+	const {tabActive} = useContext(InformationsContext)
 
-	function handleCPF() {
-		setCPF('123.456.789-00')
-	}
 	return (
-		<div>
-			<h1>hello</h1>
-			<p>{CPF}</p>
-		</div>
-	)
+		<main>
+			{
+				tabActive == 0 ? <Welcome />
+				: tabActive == 1 ? <Tickets />
+				: null
+			}
+		</main>
+	);
 }
 
-export default App
+export default App;
