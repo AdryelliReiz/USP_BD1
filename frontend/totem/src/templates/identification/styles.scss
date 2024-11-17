@@ -1,0 +1,88 @@
+.identification-container {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(var(--purple-01), var(--purple-03));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+      gap: 1rem;
+      
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--white);
+
+    }
+  
+    .cpf-input-container {
+      margin-bottom: 1rem;
+  
+      input {
+        width: 300px;
+        padding: 10px;
+        font-size: 1.2rem;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+        background-color: #4a007e;
+        color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+  
+        &::placeholder {
+          color: #c7c7c7;
+        }
+      }
+    }
+  
+    .skip-button {
+      margin-bottom: 2rem;
+      background: none;
+      border: none;
+      color: #c7c7c7;
+      font-size: 1rem;
+      cursor: pointer;
+  
+      &:hover {
+        text-decoration: underline;
+        color: white;
+      }
+    }
+  
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      gap: 10px;
+  
+      .keypad-button {
+        width: 80px;
+        height: 80px;
+        font-size: 1.5rem;
+        border: none;
+        border-radius: 10px;
+        background-color: #6a1b9a;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 4px #4a007e;
+  
+        &:active {
+          transform: translateY(2px);
+          box-shadow: 0 2px #4a007e;
+        }
+  
+        &:hover {
+          background-color: #7b1fa2;
+        }
+      }
+    }
+  }
+  

@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { InformationsContext } from "./contexts/informationsProvider"
 import Welcome from "./templates/welcome";
 import Tickets from "./templates/tickets";
+import Cinemas from "./templates/cinemas";
+import Identification from "./templates/identification";
 
 function App() {
 	const {tabActive} = useContext(InformationsContext)
@@ -11,7 +13,9 @@ function App() {
 			{
 				tabActive == 0 ? <Welcome />
 				: tabActive == 1 ? <Tickets />
-				: null
+				: tabActive == 2 ? <Cinemas />
+				: tabActive == 3 ? <Identification />
+				:null
 			}
 		</main>
 	);
