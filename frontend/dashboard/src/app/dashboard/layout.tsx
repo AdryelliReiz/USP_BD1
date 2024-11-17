@@ -21,6 +21,10 @@ export default function RootLayout({
             <body>
                 <SideBar />
                 <main>
+                  <header>
+                    <h1>CINEACH</h1>
+                  </header>
+
                   {children}
                 </main>
             </body>
