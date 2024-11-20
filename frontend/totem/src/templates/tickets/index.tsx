@@ -53,19 +53,17 @@ export default function Tickets() {
                     ))}
                 </div>
 
-                <div className="t-footer">
-                    <p>Pontos: 300</p>
-                    <div className="t-buttons" >
-                        <button onClick={() => setTabActive(tabActive - 1)} >
-                            Voltar
-                        </button>
+                <div className="botoes-container">
+                    <button className="voltar-button" onClick={() => setTabActive(tabActive - 1)}>
+                    Voltar
+                    </button>
 
-                        <button onClick={() => setTabActive(tabActive + 1)} >
-                            0 / 2 ingressos selecionados
-                        </button>
-                    </div>
+                    <button className="ingressos-button" onClick={() => setTabActive(tabActive + 1)}>
+                        Ingressos Selecionados
+                    </button>
                 </div>
+
             </div>
         </div>
     )
-}
+ }
