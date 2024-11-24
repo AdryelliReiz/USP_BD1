@@ -24,6 +24,18 @@
         margin-top: 270px;
         margin-bottom: 30px;
       }
+
+      .icone {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: -14rem;
+        img, .icone-check {
+          width: 150px; /* Define o tamanho desejado */
+          height: auto; /* Mantém a proporção */
+          max-width: 100%; /* Garante responsividade */
+        }
+      }
     
       .btn-voltar-inicio {
         background-color: #a346ff; /* Cor do fundo */

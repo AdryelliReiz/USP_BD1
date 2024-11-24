@@ -6,6 +6,8 @@ import Cinemas from "./templates/cinemas";
 import Identification from "./templates/identification";
 import Payment from "./templates/payment";
 import End from "./templates/end";
+import Session from "./templates/session";
+import Catalogo from "./templates/catalogo";
 
 
 function App() {
@@ -15,11 +17,13 @@ function App() {
 		<main>
 			{
 				tabActive == 0 ? <Welcome />
-				: tabActive == 3 ? <Tickets />
+				: tabActive == 4 ? <Tickets />
 				: tabActive == 1 ? <Cinemas />
 				: tabActive == 2 ? <Identification />
-				: tabActive == 4 ? <Payment />
-				: tabActive == 5 ? <End />
+				: tabActive == 5 ? <Session />
+				: tabActive == 6 ? <Payment />
+				: tabActive == 7 ? <End />
+				:tabActive == 3 ? <Catalogo />
 				:null
 			}
 		</main>

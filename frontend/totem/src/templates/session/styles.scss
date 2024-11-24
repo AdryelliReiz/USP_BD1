@@ -1,0 +1,144 @@
+.cinema-container {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(var(--purple-01), var(--purple-03));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--white);
+  }
+  
+  .back-button {
+    background-color: #a346ff; /* Cor de fundo do botão */
+          color: black; /* Cor do texto */
+          font-size: 16px; /* Tamanho do texto */
+          font-weight: bold; /* Texto em negrito */
+          border: none; /* Remove bordas */
+          border-radius: 8px; /* Bordas arredondadas */
+          padding: 10px 20px; /* Espaçamento interno (vertical x horizontal) */
+          cursor: pointer; /* Cursor tipo "mão" */
+          display: inline-flex; /* Alinhamento interno flex */
+          align-items: center; /* Centraliza verticalmente o conteúdo */
+          gap: 5px; /* Espaçamento entre o texto e o símbolo */
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidade */
+          transition: all 0.3s ease-in-out; /* Animação para interatividade */
+          margin-bottom: 4rem;
+          &:hover {
+            background-color: #902edf; /* Cor de fundo no hover */
+            color: #fff; /* Texto branco no hover */
+          }
+      
+          &:active {
+            transform: scale(0.96); /* Reduz levemente o tamanho ao clicar */
+          }
+      
+          &::before {
+             /* Adiciona o símbolo de "Voltar" */
+            font-size: 18px; /* Tamanho do símbolo */
+            margin-right: 8px; /* Espaçamento entre o símbolo e o texto */
+            font-weight: bold; /* Torna o símbolo mais visível */
+          }
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+  }
+  
+  .content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  
+  .sessions {
+    flex: 1;
+  
+    h2 {
+      font-size: 20px;
+      margin-bottom: 29px;
+    }
+  
+    .session-room {
+      margin-bottom: 28px;
+  
+      p {
+        margin: 0 0 10px 0;
+        font-size: 20px;
+  
+        .tag {
+          background-color: var(--purple-03 );
+          color: white;
+          font-size: 12px;
+          padding: 2px 6px;
+          border-radius: 5px;
+          margin-left: 5px;
+        }
+      }
+  
+      .times {
+        display: flex;
+        gap: 10px;
+  
+        button {
+          background-color: #a346ff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          padding: 5px 15px;
+          font-size: 15px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  
+  .movie-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    img {
+      width: 150px;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+  
+    .details {
+      text-align: center;
+  
+      h3 {
+        font-size: 23px;
+        margin-bottom: 10px;
+      }
+  
+      p {
+        font-size: 17px;
+        margin: 5px 0;
+  
+        strong {
+          font-weight: bold;
+        }
+      }
+  
+
+
+
+
+      button {
+        background-color: #6200ea;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-top: 200rem;
+      }
+    }
+  }
+  

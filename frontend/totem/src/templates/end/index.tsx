@@ -10,7 +10,7 @@ export default function End() {
             <h1>CINEACH</h1>
             <h2>Pagamento realizado com sucesso!</h2>
             <div className="icone">
-                {/* Aqui você pode adicionar o ícone de sucesso, como uma imagem ou SVG */}
+            <img src="/imagens/check.png"></img>
             </div>
             <p>Retire seu ticket na maquininha ao lado</p>
             
