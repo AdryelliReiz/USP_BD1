@@ -26,23 +26,49 @@
 
         h2 {
             width: 100%;
-            padding: 3rem;
+            padding: 1.5rem;
             font-size: 1.8rem;
             text-align: center;
             color: var(--white);
+            margin-bottom: 30px;
         }
 
-
+        .c-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6rem;
+      
+            button {
+              background: #822daf;
+              border: none;
+              border-radius: 8px;
+              padding: 2.5rem 7rem;
+              color: #ffffff;
+              cursor: pointer;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              transition: transform 0.2s ease, box-shadow 0.2s ease;
+      
+              h3 {
+                font-size: 1.6rem;
+                margin: 0;
+              }
+      
+              p {
+                font-size: 1.1rem;
+                margin: 0;
+                opacity: 0.8;
+              }
+      
+              &:hover {
+                transform: scale(1.05);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+              }
+      
+              &:active {
+                transform: scale(1);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+              }
+            }
     }
-
-    .c-buttons {
-        width: 65rem;
-        height: 23rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6rem;
-        padding: 2rem 1rem; 
-       
-    }
- 
+} 
 }

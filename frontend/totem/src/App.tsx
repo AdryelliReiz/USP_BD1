@@ -15,9 +15,9 @@ function App() {
 		<main>
 			{
 				tabActive == 0 ? <Welcome />
-				: tabActive == 1 ? <Tickets />
-				: tabActive == 2 ? <Cinemas />
-				: tabActive == 3 ? <Identification />
+				: tabActive == 3 ? <Tickets />
+				: tabActive == 1 ? <Cinemas />
+				: tabActive == 2 ? <Identification />
 				: tabActive == 4 ? <Payment />
 				: tabActive == 5 ? <End />
 				:null
