@@ -176,8 +176,8 @@ export default function EmployeesPage(){
                                             </div>
                                         )}
 
-                                        {employeesData[employeeSelected].tipo === 'Admin' ||
-                                        employeesData[employeeSelected].tipo === 'Gerente'  && (
+                                        {(employeesData[employeeSelected].tipo === 'Admin' ||
+                                        employeesData[employeeSelected].tipo === 'Gerente')  && (
                                             <>
                                                 <div className="input-group">
                                                     <label htmlFor="email">Email corporativo</label>
