@@ -8,7 +8,7 @@ import Payment from "./templates/payment";
 import End from "./templates/end";
 import Session from "./templates/session";
 import Catalogo from "./templates/catalogo";
-
+import Poltrona from "./templates/poltrona";
 
 function App() {
 	const {tabActive} = useContext(InformationsContext)
@@ -17,13 +17,14 @@ function App() {
 		<main>
 			{
 				tabActive == 0 ? <Welcome />
-				: tabActive == 4 ? <Tickets />
+				: tabActive == 6 ? <Tickets />
 				: tabActive == 1 ? <Cinemas />
 				: tabActive == 2 ? <Identification />
-				: tabActive == 5 ? <Session />
-				: tabActive == 6 ? <Payment />
-				: tabActive == 7 ? <End />
+				: tabActive == 4 ? <Session />
+				: tabActive == 7 ? <Payment />
+				: tabActive == 8 ? <End />
 				:tabActive == 3 ? <Catalogo />
+				 : tabActive == 5 ? <Poltrona />
 				:null
 			}
 		</main>

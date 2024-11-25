@@ -57,21 +57,23 @@
     flex: 1;
   
     h2 {
-      font-size: 20px;
+      font-size: 28px;
       margin-bottom: 29px;
+      margin-left: 200px;
     }
   
     .session-room {
       margin-bottom: 28px;
+      margin-left: 200px;
   
       p {
         margin: 0 0 10px 0;
-        font-size: 20px;
+        font-size: 25px;
   
         .tag {
           background-color: var(--purple-03 );
           color: white;
-          font-size: 12px;
+          font-size: 13px;
           padding: 2px 6px;
           border-radius: 5px;
           margin-left: 5px;
@@ -96,28 +98,29 @@
   }
   
   .movie-details {
-    flex: 1;
+    flex: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin-top: -10rem;
+    margin-right: 80px;
   
     img {
-      width: 150px;
+      width: 220px;
       height: auto;
-      border-radius: 5px;
-      margin-bottom: 10px;
+      border-radius: 15px;
+      margin-bottom: 16px;
     }
   
     .details {
       text-align: center;
   
       h3 {
-        font-size: 23px;
+        font-size: 25px;
         margin-bottom: 10px;
       }
   
       p {
-        font-size: 17px;
+        font-size: 19px;
         margin: 5px 0;
   
         strong {

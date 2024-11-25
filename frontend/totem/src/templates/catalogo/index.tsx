@@ -35,10 +35,10 @@ const Cinema: React.FC = () => {
       <p className="cinema-subtitle">Filmes em cartaz</p>
       <div className="date-tabs">
         <button className="active-tab">Hoje</button>
-        <button>30/10</button>
-        <button>31/10</button>
-        <button>01/11</button>
-        <button>02/11</button>
+        <button>27/11</button>
+        <button>28/11</button>
+        <button>29/11</button>
+        <button>30/11</button>
       </div>
       <div className="films-container">
         {films.map((film, index) => (

@@ -1,57 +1,42 @@
-import {useState} from "react";
-import {
-    BiPlus,
-    BiMinus
-} from "react-icons/bi";
-
+import React, { useState } from "react";
 import "./styles.scss";
 
-export type ITicketCardProps = {
-    name: string;
-    type: "pontos" | "monetario";
-    value: number;
+// Interface para o componente TicketCard
+export interface ITicketCardProps {
+    name: string; // Nome do ingresso
+    value: number; // Valor do ingresso
+    type: string; // Tipo (monetário ou pontos)
+    onQuantityChange?: (quantity: number) => void; // Callback para mudança de quantidade
 }
 
-export default function TicketCard({
-    name,
-    type,
-    value
-}: ITicketCardProps) {
-    const [selectedTickets, setSelectedTickers] = useState(0);
-    // Pegar o número de assentos escolhidos
-    // Pegar a lista de tickets escolhidos
+const TicketCard: React.FC<ITicketCardProps> = ({ name, value, type, onQuantityChange }) => {
+    const [quantity, setQuantity] = useState(0);
 
-    function toggleSelectedTickets(type: "minus" | "plus") {
-        // Lógica para adicionar ou remover um ticket da lista de tickets
+    const handleIncrement = () => {
+        const newQuantity = quantity + 1;
+        setQuantity(newQuantity);
+        onQuantityChange && onQuantityChange(newQuantity); // Chama o callback, se definido
+    };
 
-        if(type == "minus" && selectedTickets > 0) {
-            setSelectedTickers(selectedTickets - 1);
-        } else if(type == "plus") {
-            /* adicionar esse ticket na lista de tickets não pode ultrapassar o número de assentos escolhidos*/
-            setSelectedTickers(selectedTickets + 1)
+    const handleDecrement = () => {
+        if (quantity > 0) {
+            const newQuantity = quantity - 1;
+            setQuantity(newQuantity);
+            onQuantityChange && onQuantityChange(newQuantity); // Chama o callback, se definido
         }
-    }
+    };
 
     return (
-        <div className="card-container" >
-            <div className="c-info">
-                <p><strong>{name}</strong></p>
-                <p>
-                    {type == "monetario" && "R$ "}
-                    {value}
-                    {type == "pontos" && " pontos"}
-                </p>
-            </div>
-
-            <div className="c-selector-tickets" >
-                <button onClick={() => toggleSelectedTickets("minus")} >
-                    <BiMinus size={18} />
-                </button>
-                <div>{selectedTickets}</div>
-                <button onClick={() => toggleSelectedTickets("plus")} >
-                    <BiPlus size={18} />
-                </button>
+        <div className="ticket-card">
+            <h3>{name}</h3>
+            <p>{type === "monetario" ? `R$ ${value.toFixed(2)}` : `${value} pontos`}</p>
+            <div className="quantity-controls">
+                <button onClick={handleDecrement} disabled={quantity <= 0}>-</button>
+                <span>{quantity}</span>
+                <button onClick={handleIncrement}>+</button>
             </div>
         </div>
     );
-}
+};
+
+export default TicketCard;

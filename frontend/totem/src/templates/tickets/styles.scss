@@ -8,9 +8,8 @@
 
     .t-content {
         width: 100%;
-        min-height:100vh;
+        min-height: 100vh;
         max-width: 1180px;
-        //margin: 0 auto;
         padding: 1rem 2.5rem;
         display: flex;
         flex-direction: column;
@@ -27,13 +26,16 @@
             width: 100%;
             text-align: center;
             color: var(--white);
-            font-size: 1.3rem;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .t-session-information {
             width: 100%;
             color: var(--white);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            text-align: center;
+
             h3 {
                 padding: 0.5rem 0;
             }
@@ -46,51 +48,114 @@
         .t-tickets {
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 250px;
+            grid-template-columns: repeat(3, 1fr); /* Três colunas */
+            gap: 1.5rem; /* Espaço entre os cartões */
+            margin-bottom: 14rem;
+
+            .ticket-card {
+                background: var(--purple-02);
+                color: var(--white);
+                border-radius: 8px;
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: scale(1.05);
+                }
+
+                h4 {
+                    margin-bottom: 0.5rem;
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                }
+
+                p {
+                    margin-bottom: 1rem;
+                    font-size: 1rem;
+                }
+
+                .quantity-controls {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                    background: var(--purple-03);
+                    border-radius: 5px;
+                    padding: 0.5rem;
+
+                    button {
+                        background: var(--purple-01);
+                        color: var(--white);
+                        border: none;
+                        border-radius: 4px;
+                        padding: 0.5rem 1rem;
+                        font-size: 1rem;
+                        cursor: pointer;
+                        transition: background 0.3s ease;
+
+                        &:hover {
+                            background: var(--purple-04);
+                        }
+
+                        &:active {
+                            transform: scale(0.95);
+                        }
+                    }
+
+                    .quantity {
+                        font-size: 1.2rem;
+                        font-weight: bold;
+                        color: var(--white);
+                        margin: 0 1rem;
+                    }
+                }
+            }
         }
     }
 
     .botoes-container {
-        position: absolute; /* Fixa os botões na parte inferior */
-        bottom: 20px; /* Espaçamento da parte inferior da tela */
+        position: absolute;
+        bottom: 20px;
         left: 0;
         right: 0;
-        width: 100%; /* Ocupa a largura total */
-        display: flex; /* Define o layout como flex */
-        justify-content: space-between; /* Espaça os botões para cantos opostos */
-        padding: 35px 60px; /* Espaçamento lateral */
-        align-items: center; /* Alinha os botões verticalmente */
-      
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 2rem;
+
         .voltar-button,
         .ingressos-button {
-          background-color: #a346ff; /* Cor de fundo */
-          color: black; /* Cor do texto */
-          font-size: 16px; /* Tamanho do texto */
-          font-weight: bold; /* Texto em negrito */
-          border: none; /* Remove bordas */
-          border-radius: 8px; /* Bordas arredondadas */
-          padding: 20px 25px; /* Espaçamento interno */
-          cursor: pointer; /* Cursor tipo "mão" */
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidade */
-          transition: all 0.3s ease-in-out; /* Animação para interatividade */
-      
-          &:hover {
-            background-color: #902edf; /* Cor de fundo no hover */
-            color: #fff; /* Texto branco no hover */
-          }
-      
-          &:active {
-            transform: scale(0.96); /* Reduz levemente o tamanho ao clicar */
-          }
+            background-color: #a346ff;
+            color: black;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                background-color: #902edf;
+                color: #fff;
+            }
+
+            &:active {
+                transform: scale(0.96);
+            }
         }
-      
+
         .voltar-button::before {
-          content: '<'; /* Adiciona o símbolo de "Voltar" */
-          font-size: 16px; /* Tamanho do símbolo */
-          margin-right: 8px; /* Espaçamento entre o símbolo e o texto */
-          font-weight: bold; /* Torna o símbolo mais visível */
+            content: '<';
+            font-size: 1rem;
+            margin-right: 0.5rem;
+            font-weight: bold;
         }
-      }
+    }
 }
