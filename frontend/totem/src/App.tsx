@@ -23,8 +23,8 @@ function App() {
 				: tabActive == 4 ? <Session />
 				: tabActive == 7 ? <Payment />
 				: tabActive == 8 ? <End />
-				:tabActive == 3 ? <Catalogo />
-				 : tabActive == 5 ? <Poltrona />
+				: tabActive == 3 ? <Catalogo />
+				: tabActive == 5 ? <Poltrona />
 				:null
 			}
 		</main>
