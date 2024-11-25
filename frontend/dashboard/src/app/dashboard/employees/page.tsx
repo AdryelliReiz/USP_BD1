@@ -2,6 +2,7 @@
 
 import Table from "@/components/Table";
 import { useSession } from "@/context/sessionContext";
+import Link from "next/link";
 import { useState } from "react";
 import { BiPlus, BiSearch, BiTrash, BiEdit } from "react-icons/bi";
 import {MdClose} from "react-icons/md";
@@ -110,9 +111,12 @@ export default function EmployeesPage(){
                                     <BiSearch size={20} />
                                 </button>
                             </div>
-                            <button className="add-btn" >
-                                <BiPlus size={24} />
-                            </button>
+                            
+                            <Link href="/dashboard/employees/new">
+                                <button className="add-btn">
+                                    <BiPlus size={20} />
+                                </button>
+                            </Link>
                         </div>
 
                         <Table

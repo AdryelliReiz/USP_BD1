@@ -576,6 +576,12 @@ main {
                             grid-template-columns: 1fr 1fr;
                             gap: 2.5rem;
                         }
+                        .form-group-3 {
+                            width: 100%;
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr;
+                            gap: 2.5rem;
+                        }
 
                         .input-group {
                             display: flex;
@@ -597,6 +603,27 @@ main {
                             }
 
                             input:focus, select:focus {
+                                outline: 2px solid var(--purple-02);
+                            }
+                        }
+
+                        .check-group {
+                            display: flex;
+                            align-items: center;
+                            gap: 1rem;
+
+                            label {
+                                font-size: 1.125rem;
+                                font-weight: 500;
+                                color: var(--title);
+                            }
+
+                            input {
+                                width: 1rem;
+                                height: 1rem;
+                            }
+
+                            input:focus {
                                 outline: 2px solid var(--purple-02);
                             }
                         }
