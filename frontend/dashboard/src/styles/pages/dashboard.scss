@@ -262,6 +262,131 @@ main {
                         }
                     }
                 }
+
+                .room-form-container {
+                    width: 100%;
+                    margin: 0 auto;
+                    background-color: var(--white);
+                    padding: 1.5rem;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5rem;
+                        
+                    .form-grid-group {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1rem;;
+
+                        .input-group {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.5rem;
+
+                            label {
+                                font-size: 1rem;
+                                font-weight: 500;
+                                color: var(--title);
+                            }
+
+                            input, select {
+                                padding: 0.75rem;
+                                border: 1px solid #AEAEAE;
+                                border-radius: 4px;
+                                font-size: 1rem;
+                                color: var(--text);
+                            }
+
+                            input:focus {
+                                outline: 2px solid var(--purple-02);
+                            }
+
+                            .room-seats-container {
+                                width: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 0.5rem;
+
+                                div {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 0.5rem;
+
+                                    button {
+                                        width: 56px;
+                                        height: 60px;
+                                        display: flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        gap: 0.5rem;
+                                        padding: 0.5rem 1rem;
+                                        border: none;
+                                        border-radius: 4px;
+                                        cursor: pointer;
+                                        transition: background-color 0.2s;
+
+                                        &:hover {
+                                            background-color: var(--yellow);
+                                            color: var(--white);
+                                        }
+                                    }
+
+                                    .seat-selected {
+                                        background-color: var(--yellow);
+                                        color: var(--white);
+                                    }
+                                }
+                            }
+                        }
+
+                        .check-group {
+                            display: flex;
+                            align-items: center;
+                            gap: 1rem;
+
+                            label {
+                                font-size: 0.875rem;
+                                font-weight: 500;
+                                color: var(--title);
+                            }
+
+                            input {
+                                width: 1rem;
+                                height: 1rem;
+                            }
+
+                            input:focus {
+                                outline: 2px solid var(--purple-02);
+                            }
+                        }
+                    
+                    }
+
+                    .btn-submit-container {
+                        display: flex;
+                        justify-content: flex-end;
+                        gap: 1rem;
+
+                        button {
+                            padding: 0.75rem 1rem;
+                            background-color: var(--green-light);
+                            font-size: 1rem;
+                            font-weight: 500;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            transition: background-color 0.2s;
+
+                            &:hover {
+                                background-color: var(--green-dark);
+                            }
+                        }
+                    }
+                }
             }
 
             .modal {
