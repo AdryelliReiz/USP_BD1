@@ -387,6 +387,170 @@ main {
                         }
                     }
                 }
+
+                .films-selected-list {
+                    width: 100%;
+                    padding: 1rem 1.5rem;
+                    background-color: var(--white);
+                    border-radius: 8px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    gap: 2rem;
+
+                    .film-card {
+                        display: flex;
+                        gap: 1rem;
+                        padding: 1rem;
+                        border-radius: 8px;
+                        cursor: pointer;
+
+                        &:hover {
+                            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+                        }
+
+                        img {
+                            width: 100%;
+                            max-width: 186px;
+                            object-fit: cover;
+                            overflow: hidden;
+                        }
+
+                        h5 {
+                            font-size: 1.25rem;
+                            font-weight: 500;
+                            color: var(--title);
+                        }
+
+                        p {
+                            font-size: 1rem;
+                            color: var(--text);
+                            margin: 0.25rem 0;
+                        }
+                    }
+                }
+
+                .session-config {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5rem;
+                    background-color: var(--white);
+                    padding: 1.5rem;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+
+                    .film-selected {
+                        width: 100%;
+                        display: flex;
+                        gap: 1rem;
+                        border-bottom: 1px solid #AEAEAE;
+                        padding-bottom: 1rem;
+
+                        img {
+                            width: 86px;
+                            object-fit: cover;
+                            overflow: hidden;
+                        }
+
+                        .film-info {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.5rem;
+
+                            h5 {
+                                font-size: 1rem;
+                                font-weight: 500;
+                                color: var(--title);
+                            }
+
+                            p {
+                                font-size: 0.875rem;
+                                color: var(--text);
+                            }
+                        }
+                    }
+
+                    form {
+                        .form-content {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            gap: 2.5rem;
+                            margin-bottom: 2rem;
+
+                            .form-group {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 1.5rem;
+                                .input-group {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 0.5rem;
+        
+                                    label {
+                                        font-size: 1.125rem;
+                                        font-weight: 500;
+                                        color: var(--title);
+                                    }
+        
+                                    input, select {
+                                        padding: 0.75rem;
+                                        border: 1px solid #AEAEAE;
+                                        border-radius: 4px;
+                                        font-size: 1rem;
+                                        color: var(--text);
+                                    }
+        
+                                    input:focus, select:focus {
+                                        outline: 2px solid var(--purple-02);
+                                    }
+                                }
+        
+                                .check-group {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 1rem;
+        
+                                    label {
+                                        font-size: 1.125rem;
+                                        font-weight: 500;
+                                        color: var(--title);
+                                    }
+        
+                                    input {
+                                        width: 1rem;
+                                        height: 1rem;
+                                    }
+        
+                                    input:focus {
+                                        outline: 2px solid var(--purple-02);
+                                    }
+                                }
+                            }
+                        }
+
+                        .btn-submit-container {
+                            display: flex;
+                            justify-content: flex-end;
+                            gap: 1rem;
+    
+                            button {
+                                padding: 0.75rem 1rem;
+                                background-color: var(--green-light);
+                                font-size: 1rem;
+                                font-weight: 500;
+                                border: none;
+                                border-radius: 4px;
+                                cursor: pointer;
+                                transition: background-color 0.2s;
+    
+                                &:hover {
+                                    background-color: var(--green-dark);
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             .modal {

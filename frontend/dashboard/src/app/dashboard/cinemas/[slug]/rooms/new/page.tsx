@@ -57,7 +57,7 @@ export default function NewRoomPage({
                     </div>
 
                     <div className="dash-content">
-                        <h4>Configure uma nossa sala de cinema</h4>
+                        <h4>Configure uma nova sala de cinema</h4>
                         <form action="" className="room-form-container">
                             <div className="form-grid-group">
                                 <div className="input-group">
