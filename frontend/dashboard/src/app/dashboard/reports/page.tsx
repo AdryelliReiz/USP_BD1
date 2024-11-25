@@ -117,7 +117,7 @@ export default function ReportsPage() {
                                 />
                             </div>
 
-                            <div className="reports-grid grid-2">
+                            <div className="reports-grid grid-2 charts-container">
                                 <ReportCard 
                                     title="Faturamento dos cinemas" 
                                     content={
