@@ -119,7 +119,6 @@ export default function ReportsPage() {
 
                             <div className="reports-grid grid-2">
                                 <ReportCard 
-                                    isChart
                                     title="Faturamento dos cinemas" 
                                     content={
                                         <ResponsiveContainer width="100%" height="100%">
@@ -146,7 +145,6 @@ export default function ReportsPage() {
                                 />
 
                                 <ReportCard
-                                    isChart
                                     title="Ingressos mais vendidos"
                                     content={
                                         <ResponsiveContainer width="100%" height="100%">
@@ -173,7 +171,7 @@ export default function ReportsPage() {
                                 <ReportCard
                                     title="Filmes mais vendidos"
                                     content={
-                                        <table class="movie-table">
+                                        <table className="movie-table">
                                             <thead>
                                                 <tr>
                                                     <th>Título</th>
@@ -185,7 +183,7 @@ export default function ReportsPage() {
                                             </thead>
                                             <tbody>
                                                 {data.topMovies.map((movie, index) => (
-                                                    <tr>
+                                                    <tr key={index}>
                                                         <td>{movie.name}</td>
                                                         <td>{movie.utilization}%</td>
                                                         <td>{movie.gender}</td>
