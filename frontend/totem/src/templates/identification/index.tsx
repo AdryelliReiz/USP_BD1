@@ -51,11 +51,17 @@ export default function Identification() {
 
       {/* Botões Voltar e Seguinte */}
       <div className="footer-buttons">
-        <button className="back-button" onClick={() => setTabActive(tabActive - 1)}>
+        <button
+          className="back-button"
+          onClick={() => setTabActive(tabActive - 1)}
+        >
           Voltar
         </button>
         {cpf.length === 11 && (
-          <button className="next-button" onClick={() => setTabActive(tabActive + 1)}>
+          <button
+            className="next-button"
+            onClick={() => setTabActive(tabActive + 1)}
+          >
             Seguinte
           </button>
         )}

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import { RiArmchairLine } from "react-icons/ri";
 import { TbArmchair2Off } from "react-icons/tb";
 import { InformationsContext } from "../../contexts/informationsProvider";

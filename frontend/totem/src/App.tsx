@@ -17,14 +17,14 @@ function App() {
 		<main>
 			{
 				tabActive == 0 ? <Welcome />
-				: tabActive == 6 ? <Tickets />
 				: tabActive == 1 ? <Cinemas />
 				: tabActive == 2 ? <Identification />
+				: tabActive == 3 ? <Catalogo />
 				: tabActive == 4 ? <Session />
+				: tabActive == 5 ? <Poltrona />
+				: tabActive == 6 ? <Tickets />
 				: tabActive == 7 ? <Payment />
 				: tabActive == 8 ? <End />
-				: tabActive == 3 ? <Catalogo />
-				: tabActive == 5 ? <Poltrona />
 				:null
 			}
 		</main>

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { InformationsContext } from "../../contexts/informationsProvider" // Certifique-se de importar corretamente o contexto
+import { InformationsContext } from "../../contexts/informationsProvider"; 
 import "./styles.scss";
 
 interface Film {
@@ -14,17 +14,17 @@ const Cinema: React.FC = () => {
   const films: Film[] = [
     {
       title: "Deadpool & Wolverine",
-      image: "/imagens/deadpool.png", // Substituir pelo caminho correto
+      image: "/imagens/deadpool.png", 
       times: ["13:30", "19:40", "20:20"],
     },
     {
       title: "Divertidamente 2",
-      image: "/imagens/divertidamente.png", // Substituir pelo caminho correto
+      image: "/imagens/divertidamente.png", 
       times: ["11:45", "14:50"],
     },
     {
       title: "Homem-Aranha Através do Aranhaverso",
-      image: "/imagens/spider.png", // Substituir pelo caminho correto
+      image: "/imagens/spider.png", 
       times: ["16:00", "17:30", "19:30"],
     },
   ];

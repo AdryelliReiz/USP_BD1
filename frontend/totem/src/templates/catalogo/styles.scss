@@ -1,87 +1,86 @@
 .cinema-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(var(--purple-01), var(--purple-03));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(var(--purple-01), var(--purple-03));
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.cinema-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cinema-subtitle {
+  font-size: 2rem;
+  margin-bottom: 35px;
+}
+
+.date-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 35px;
+
+  button {
+    background: none;
     color: white;
-    min-height: 100vh;
-    padding: 20px;
+    border: 1px solid white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &.active-tab {
+      background-color: white;
+      color: #4a148c;
+      font-weight: bold;
+    }
   }
-  
-  .cinema-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+}
+
+.films-container {
+  display: flex;
+  gap: 70px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.film-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+
+  .film-poster-button {
+    background: none;
+    border: none;
+    cursor: pointer;
   }
-  
-  .cinema-subtitle {
-    font-size: 2rem;
-    margin-bottom: 35px;
+
+  .film-poster {
+    width: 100%;
+    border-radius: 15px;
   }
-  
-  .date-tabs {
+
+  .film-title {
+    font-size: 1rem;
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .film-times {
     display: flex;
-    gap: 10px;
-    margin-bottom: 35px;
-  
-    button {
-      background: none;
-      color: white;
-      border: 1px solid white;
+    gap: 5px;
+    flex-wrap: wrap;
+
+    .film-time {
+      background-color: white;
+      color: #4a148c;
       padding: 5px 10px;
       border-radius: 5px;
-      cursor: pointer;
-  
-      &.active-tab {
-        background-color: white;
-        color: #4a148c;
-        font-weight: bold;
-      }
+      font-size: 0.9rem;
     }
   }
-  
-  .films-container {
-    display: flex;
-    gap: 70px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .film-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-  
-    .film-poster-button {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-  
-    .film-poster {
-      width: 100%;
-      border-radius: 15px;
-    }
-  
-    .film-title {
-      font-size: 1rem;
-      margin: 10px 0;
-      text-align: center;
-    }
-  
-    .film-times {
-      display: flex;
-      gap: 5px;
-      flex-wrap: wrap;
-  
-      .film-time {
-        background-color: white;
-        color: #4a148c;
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-size: 0.9rem;
-      }
-    }
-  }
-  
+}
