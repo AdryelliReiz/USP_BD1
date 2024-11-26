@@ -79,10 +79,12 @@ export default function FilmsPage(){
                     <div className="dash-content">
                         <div className="dash-actions">
                             <div />
-                            <button className="add-btn" >
-                                <BiPlus size={24} />
-                                Adicionar Filme
-                            </button>
+                            <Link href={`/dashboard/films/new`}>
+                                <button className="add-btn" >
+                                    <BiPlus size={24} />
+                                    Adicionar Filme
+                                </button>
+                            </Link>
                         </div>
 
                         <div className="cards-container-grid">

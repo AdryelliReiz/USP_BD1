@@ -1,11 +1,12 @@
 'use client'
-import { useFormState, useFormStatus } from 'react-dom'
+import { useFormStatus } from 'react-dom'
 import { signup } from '@/app/actions/auth'
 
 import '@/styles/pages/login.scss'
+import { useActionState } from 'react'
 
 export default function Login() {
-    const [state, action] = useFormState(signup, undefined)
+    const [state, action] = useActionState(signup, undefined)
     const { pending } = useFormStatus()
 
     return (

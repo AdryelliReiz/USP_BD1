@@ -2,7 +2,7 @@
 
 import Table from "@/components/Table";
 import { useSession } from "@/context/sessionContext";
-import { BiPlus, BiSearch, BiTrash } from "react-icons/bi";
+import { BiSearch, BiTrash } from "react-icons/bi";
 
 const clientsData = [
     {
@@ -86,9 +86,6 @@ export default function ClientsPage(){
                                     <BiSearch size={20} />
                                 </button>
                             </div>
-                            <button className="add-btn" >
-                                <BiPlus size={24} />
-                            </button>
                         </div>
 
                         <Table

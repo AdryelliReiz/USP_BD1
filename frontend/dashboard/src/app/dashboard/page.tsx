@@ -8,11 +8,11 @@ export default function DashboardHome(){
     
     return (
         <section>
-            {sessionUser ? (
+            {sessionUser?.role == 'admin' ? (
                 <div className="dash-container">
                     <div className="dash-header">
                         <h2>Dashboard</h2>
-                        <h3>Bem-vindo(a), {sessionUser.name}</h3>
+                        <h3>Bem-vindo(a), {sessionUser.nome}</h3>
                     </div>
 
                     <div className="dash-content">

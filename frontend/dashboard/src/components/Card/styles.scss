@@ -1,13 +1,13 @@
 .card-container {
     width: 100%;
-    max-width: 360px;
+    max-width: 420px;
 
     .card {
         width: 100%;
         display: flex;
         align-items: center;
         gap: 1.5rem;
-        padding: 1rem 1.5rem;
+        padding: 1.5rem;
         border-radius: 1rem;
         background-color: var(--white);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
