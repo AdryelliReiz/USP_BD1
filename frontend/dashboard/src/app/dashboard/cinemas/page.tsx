@@ -111,9 +111,11 @@ export default function CinemasPage(){
                                     <BiSearch size={20} />
                                 </button>
                             </div>
-                            <button className="add-btn" >
-                                <BiPlus size={24} />
-                            </button>
+                            <Link href="/dashboard/cinemas/new">
+                                <button className="add-btn" >
+                                    <BiPlus size={24} />
+                                </button>
+                            </Link>
                         </div>
 
                         <Table

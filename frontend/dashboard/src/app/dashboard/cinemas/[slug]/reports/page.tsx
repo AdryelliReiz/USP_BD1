@@ -109,7 +109,7 @@ export default function ReportsPage({
                                 />
                             </div>
 
-                            <div className="reports-grid grid-1-3">
+                            <div className="reports-grid grid-1-3 charts-container">
                                 <ReportCard
                                     title="Filmes mais vendidos"
                                     content={
@@ -139,7 +139,6 @@ export default function ReportsPage({
                                 />
 
                                 <ReportCard
-                                    
                                     title="Ingressos mais vendidos"
                                     content={
                                         <ResponsiveContainer width="100%" height="100%">

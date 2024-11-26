@@ -1,7 +1,5 @@
-'use client';
-
 import { ISession } from "@/middleware";
-import { jwtVerify } from "jose";
+import { decodeJwt } from "jose";
 
 export async function deleteSession() {
     await fetch('/api/session', { method: 'DELETE' });
@@ -19,12 +17,11 @@ export async function getUserSession() {
     const response = await fetch('/api/session', { method: 'GET' });
     if (!response.ok) return null;
 
-	const secretKey = new TextEncoder().encode('palavra-secreta')
 	const data = await response.json();
 	
 	if (!data.session) return null;
 
-    const { payload } = await jwtVerify(data.session, secretKey)
+    const payload = decodeJwt(data.session)
 
     const session = payload as ISession;
 
