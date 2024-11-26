@@ -1,18 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import "./styles.scss";
 import { InformationsContext } from "../../contexts/informationsProvider";
 
 export default function Identification() {
-  const { tabActive, setTabActive } = useContext(InformationsContext);
-  const [cpf, setCpf] = useState<string>("");
+  const { tabActive, setTabActive, CPF,setCPF } = useContext(InformationsContext);
 
   const handleButtonClick = (value: string) => {
     if (value === "<") {
-      const updatedCpf = cpf.slice(0, -1); // Remove o último caractere
-      setCpf(updatedCpf);
-    } else if (cpf.length < 11) {
-      const updatedCpf = cpf + value; // Adiciona o número clicado
-      setCpf(updatedCpf);
+      const updatedCpf = CPF.slice(0, -1); // Remove o último caractere
+      setCPF(updatedCpf);
+    } else if (CPF.length < 11) {
+      const updatedCpf = CPF + value; // Adiciona o número clicado
+      setCPF(updatedCpf);
     }
   };
 
@@ -24,7 +23,7 @@ export default function Identification() {
       <div className="cpf-input-container">
         <input
           type="text"
-          value={cpf}
+          value={CPF}
           placeholder="Digite seu CPF"
           readOnly
         />
@@ -32,7 +31,10 @@ export default function Identification() {
 
       <button
         className="skip-button"
-        onClick={() => setTabActive(tabActive + 1)}
+        onClick={() => {
+          setCPF("");
+          setTabActive(tabActive + 1)
+        }}
       >
         Não quero me identificar
       </button>
@@ -57,7 +59,7 @@ export default function Identification() {
         >
           Voltar
         </button>
-        {cpf.length === 11 && (
+        {CPF.length === 11 && (
           <button
             className="next-button"
             onClick={() => setTabActive(tabActive + 1)}
