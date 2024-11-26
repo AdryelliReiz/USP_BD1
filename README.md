@@ -17,15 +17,16 @@ Esse sistema atende às necessidades de uma rede de cinemas moderna, facilitando
 ## 🛠️ Estrutura do Projeto
 
 ### Back-end
-- **[API](https://github.com/AdryelliReiz/USP_BD1/backend)**: API responsável por realizar consultas ao banco de dados e fornecer os dados necessários ao sistema.
+- **[API](https://github.com/AdryelliReiz/USP_BD1/tree/main/backend)**: API responsável por realizar consultas ao banco de dados e fornecer os dados necessários ao sistema.
 - **Tecnologias**: Python e PostgreSQL.
 
 ### Documentação
-- **[Documentação](https://github.com/AdryelliReiz/USP_BD1/docs)**: Inclui os arquivos referentes ao DER (Diagrama Entidade-Relacionamento) e ao modelo lógico do banco de dados, oferecendo uma visão clara da estrutura do sistema.
+- **[Documentação](https://github.com/AdryelliReiz/USP_BD1/tree/main/docs)**: Inclui os arquivos referentes ao DER (Diagrama Entidade-Relacionamento) e ao modelo lógico do banco de dados, oferecendo uma visão clara da estrutura do sistema.
 
 ### Front-end
-- **[Dashboard](https://github.com/AdryelliReiz/USP_BD1/frontend/dashboard)**: Interface de gerenciamento que permite visualizar relatórios e administrar dados do cinema.
-- **[Totem](https://github.com/AdryelliReiz/USP_BD1/frontend/totem)**: Interface voltada ao cliente, permitindo a compra de ingressos de maneira simples e intuitiva.
+- **[Dashboard](https://github.com/AdryelliReiz/USP_BD1/tree/main/frontend/dashboard)**: Interface de gerenciamento que permite visualizar relatórios e administrar dados do cinema.
+- **[Totem](https://github.com/AdryelliReiz/USP_BD1/tree/main/frontend/totem)**: Interface voltada ao cliente, permitindo a compra de ingressos de maneira simples e intuitiva.
+- **[Web Site](https://github.com/AdryelliReiz/USP_BD1/tree/main/frontend/website)**: Interface voltada ao cliente, permitindo cadastro de clientes, login e acesso aos dados desse clientes.
 
 ## 📂 Estrutura de Diretórios
 
@@ -36,6 +37,7 @@ USP_BD1/
 └── frontend/
     ├── dashboard/          # Interface de administração
     └── totem/              # Interface de compra de ingressos
+    └── website/            # Interface de cadastro e vizualização dos dados do cliente
 
 ```
 ## 👥 Equipe de Desenvolvimento
