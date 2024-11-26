@@ -12,10 +12,23 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# Initialize environment variables
+env = environ.Env(
+    DEBUG=(bool, True),  # Default to False if not provided
+)
+
+# Load .env file if it exists
+env_file = BASE_DIR / ".env"
+if env_file.exists():
+    environ.Env.read_env(str(env_file))
+else:
+    print(".env file not found. Using default settings.")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -26,7 +39,12 @@ SECRET_KEY = "django-insecure-c2%n09x21&fi%t7hx=s91i2m2fkxu(%_p0j4_!k9nsc94q)*mg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0/0", "localhost", "10.8.9.150", "127.0.0.1:8000", "0.tcp.sa.ngrok.io"]
+# ALLOWED_HOSTS = ["0.0.0.0/0", "localhost", "10.8.9.150", "127.0.0.1:8000", "0.tcp.sa.ngrok.io"]
+
+# Settings
+DEBUG = env("DEBUG")
+# SECRET_KEY = env("SECRET_KEY", default="default-secret-key")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["0.0.0.0/0", "localhost", "10.8.9.150", "127.0.0.1:8000", "0.tcp.sa.ngrok.io"])
 
 
 # Application definition
@@ -81,14 +99,18 @@ WSGI_APPLICATION = "cinema_backend.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cinemaDB',
-        'USER': 'cinemaUser',
-        'PASSWORD': 'Cinema@Senha007',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'cinemaDB',
+    #     'USER': 'cinemaUser',
+    #     'PASSWORD': 'Cinema@Senha007',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
+    'default': env.db(
+        "DATABASE_URL",
+        default="postgres://cinemaUser:Cinema@Senha007@localhost:5432/cinemaDB"
+    )
 }
 
 
