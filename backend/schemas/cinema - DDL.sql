@@ -43,7 +43,8 @@ CREATE TABLE "sessao" (
   "hora" time,
   "numero" serial PRIMARY KEY,
   "sala_id" smallint,
-  "filme_id" integer
+  "filme_id" integer,
+  UNIQUE("data", "hora", "sala_id")
 );
 
 CREATE TABLE "filme" (
@@ -55,7 +56,8 @@ CREATE TABLE "filme" (
   "idioma" varchar(50),
   "duracao" time,
   "eh_dub" boolean,
-  "fim_contrato" date
+  "fim_contrato" date,
+  "descricao" varchar(255),
 );
 
 CREATE TABLE "genero_filme" (
@@ -83,7 +85,8 @@ CREATE TABLE "sala" (
   "suporta_3d" boolean,
   "qtde_poltronas" smallint,
   "numero" smallint PRIMARY KEY,
-  "cinema_id" char(14)
+  "cinema_id" char(14),
+  "eh_ativo" boolean DEFAULT TRUE
 );
 
 CREATE TABLE "cinema" (

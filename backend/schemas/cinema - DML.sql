@@ -3,11 +3,11 @@ BEGIN;
 INSERT INTO "cliente" (
   "email", "telefone", "cpf", "nome", "sobrenome", "rua", "n_end", "complemento", "cep", "senha"
 ) VALUES
-('marcia-dacunha70@nipnet.com.br', 96995797321, '46753425748', 'Márcia Isabella', 'Teresinha da Cunha', 'Travessa Segunda de Moraes', 567, NULL, '68904031', 'zg8ycopFF9'),
-('jennifer.emily.almada@sha.com.br', 73982230951, '44710673624', 'Jennifer Emily', 'Almada', 'Rua Santa Rita', 568, NULL, '45606755', 'Xqzm7HZ4u1'),
-('antonellaagathapires@arcante.com.br', 84996818168, '59084781210', 'Antonella Agatha', 'Pires', 'Rua Presidente João Goulart', 799, NULL, '59142310', 'gQedSgP2NI'),
-('luciaamandamelo@c-a-m.com', 95996924325, '93727862840', 'Lúcia Amanda Raquel', 'Melo', 'Rua Lírio do Campo', 889, NULL, '69314164', 'teLMINu42D'),
-('iagobentoferreira@gringa360.com.br', 84994163932, '02072103738', 'Iago Bento', 'Ferreira', 'Rua Ozéas Pereira dos Santos', 697, NULL, '59146280', '8FjkueZAi8'),
+('marcia-dacunha70@nipnet.com.br', 96995797321, '46753425748', 'Márcia Isabella', 'Teresinha da Cunha', 'Travessa Segunda de Moraes', 567, NULL, '68904031', 'argon2$argon2id$v=19$m=102400,t=2,p=8$MzBseE9ya0l0a2g1Z2U2YUVmSzlGNg$E5gtpG74xqpGJEmPcOqb0n7YjQ4x2aSl+e9cN7uYpeU'),
+('jennifer.emily.almada@sha.com.br', 73982230951, '44710673624', 'Jennifer Emily', 'Almada', 'Rua Santa Rita', 568, NULL, '45606755', 'argon2$argon2id$v=19$m=102400,t=2,p=8$R2Z4elgzZktXcmNEMjkyT2k5WGpZUA$Yf04UZD0Jo8AfOTZoIpDY36k+BDJb9vJ8I8cx//+NCE'),
+('antonellaagathapires@arcante.com.br', 84996818168, '59084781210', 'Antonella Agatha', 'Pires', 'Rua Presidente João Goulart', 799, NULL, '59142310', 'argon2$argon2id$v=19$m=102400,t=2,p=8$eHJYM1BkV3pYVFBQVGVTYXA5ZWVqeg$UIpJAoJZbwQhgADYkO+WkaTg5F3Zc3k3kOx4l0gJIAQ'),
+('luciaamandamelo@c-a-m.com', 95996924325, '93727862840', 'Lúcia Amanda Raquel', 'Melo', 'Rua Lírio do Campo', 889, NULL, '69314164', 'argon2$argon2id$v=19$m=102400,t=2,p=8$NG84bG9YZkN5S0gzNkFBYXlvR3dHbA$5aFBIs/q10032zD7mK0G1fDFltr8jJs/xzH8aBHc5AE'),
+('iagobentoferreira@gringa360.com.br', 84994163932, '02072103738', 'Iago Bento', 'Ferreira', 'Rua Ozéas Pereira dos Santos', 697, NULL, '59146280', 'argon2$argon2id$v=19$m=102400,t=2,p=8$bU9icERQOVJEZ1M1amFWWjlnY3Q5Yw$FLZi+k9bNtjoyBe4NT4gL4FuU4Vr6r0Uloxzu9sbuRw'),
 ('eduardaemillyalves@sociedadeweb.com.br', 63988552690, '26893912528', 'Eduarda Emilly', 'Alves', 'Quadra 206 Sul Alameda 15', 547, NULL, '77020518', 'sXIpw6lpFL'),
 ('laura_rezende@microdoc.com.br', 45989082798, '18558287740', 'Laura Pietra Carolina', 'Rezende', 'Avenida Gramado', 524, NULL, '85862240', 'dK9EGXTQoD'),
 ('fernanda_assuncao@yahoo.com.ar', 91985957835, '60197630219', 'Fernanda Luciana', 'Assunção', 'Rua Sexta', 456, NULL, '66623210', '96tYdSKE8M'),
@@ -24,28 +24,29 @@ INSERT INTO "cliente" (
 ('paulo-dasneves90@predialnet.com.br', 11998536677, '70835652289', 'Paulo Carlos Leonardo', 'das Neves', 'Rua Luiz Rosa da Costa', 404, NULL, '08753342', 'LtQYBMiPuE'),
 ('raquelpatriciacosta@hersa.com.br', 11984704262, '22832143601', 'Raquel Patrícia Elaine', 'Costa', 'Rua Santa Madalena', 423, NULL, '07996030', 'Brg1H6FzS4');
 
-INSERT INTO filme (titulo, ano, diretor, class_ind, idioma, duracao, eh_dub, fim_contrato)
+INSERT INTO filme (titulo, ano, diretor, class_ind, idioma, duracao, eh_dub, fim_contrato, descricao)
 VALUES
-('In the Mood for Love', 2000, 'Wong Kar Wai', 12, 'Chinês', '01:39:00', FALSE, '2024-12-31'),
-('Drive My Car', 2021, 'Ryusuke Hamaguchi', 16, 'Japonês', '02:59:00', FALSE, '2024-12-31'),
-('Little Women', 2019, 'Greta Gerwig', 10, 'Inglês', '01:39:00', FALSE, '2024-12-31'),
-('Call Me by Your Name', 2017, 'Luca Guadagnino', 10, 'Inglês', '02:12:00', FALSE, '2024-12-31'),
-('Past Lives', 2023, 'Celine Song', 12, 'Coreano', '01:45:00', FALSE, '2024-12-31'),
-('Paterson', 2023, 'Celine Song', 12, 'Inglês', '01:58:00', FALSE, '2024-12-31'),
-('The Outsiders', 1983, 'Francis Ford Coppola', 14, 'Inglês', '01:45:00', FALSE, '2024-12-31'),
-('RRR', 2022, 'S. S. Rajamouli', 16, 'Telugu', '03:05:00', FALSE, '2024-12-31'),
-('Paper Moon', 1973, 'Peter Bogdanovich', 14, 'Inglês', '01:42:00', FALSE, '2024-12-31'),
-('Godzilla Minus One', 2023,'Takashi Yamazaki', 16, 'Japonês', '02:04:00', FALSE, '2024-12-31'),
-('Parasite', 2019, 'Bong Joon Ho', 16, 'Coreano', '02:12:00', FALSE, '2024-12-31'),
-('The Grand Budapest Hotel', 2014, 'Wes Anderson', 14, 'Inglês', '01:39:00', FALSE, '2024-12-31'),
-('Portrait of a Lady on Fire', 2019, 'Céline Sciamma', 14, 'Francês', '02:00:00', FALSE, '2024-12-31'),
-('Amélie', 2001, 'Jean-Pierre Jeunet', 12, 'Francês', '02:02:00', FALSE, '2024-12-31'),
-('Cinema Paradiso', 1988, 'Giuseppe Tornatore', 12, 'Italiano', '02:35:00', FALSE, '2024-12-31'),
-('The Handmaiden', 2016, 'Park Chan-wook', 18, 'Coreano', '02:25:00', FALSE, '2024-12-31'),
-('City of God', 2002, 'Fernando Meirelles', 18, 'Português', '02:10:00', FALSE, '2024-12-31'),
-('Spirited Away', 2001, 'Hayao Miyazaki', 10, 'Japonês', '02:05:00', FALSE, '2024-12-31'),
-('The Farewell', 2019, 'Lulu Wang', 10, 'Inglês', '01:40:00', FALSE, '2024-12-31'),
-('Memories of Murder', 2003, 'Bong Joon Ho', 16, 'Coreano', '02:11:00', FALSE, '2024-12-31');
+('In the Mood for Love', 2000, 'Wong Kar Wai', 12, 'Chinês', '01:39:00', FALSE, '2024-12-31', 'Um homem e uma mulher descobrem que seus parceiros estão tendo um caso e desenvolvem uma amizade complexa.'),
+('Drive My Car', 2021, 'Ryusuke Hamaguchi', 16, 'Japonês', '02:59:00', FALSE, '2024-12-31', 'Um diretor de teatro processa a dor e perda enquanto ensaia uma peça em Hiroshima.'),
+('Little Women', 2019, 'Greta Gerwig', 10, 'Inglês', '01:39:00', FALSE, '2024-12-31', 'Quatro irmãs buscam suas aspirações em meio às dificuldades da Guerra Civil Americana.'),
+('Call Me by Your Name', 2017, 'Luca Guadagnino', 10, 'Inglês', '02:12:00', FALSE, '2024-12-31', 'Um jovem descobre o amor e a paixão durante o verão na Itália.'),
+('Past Lives', 2023, 'Celine Song', 12, 'Coreano', '01:45:00', FALSE, '2024-12-31', 'Amigos de infância se reencontram anos depois e refletem sobre o passado e escolhas.'),
+('Paterson', 2023, 'Celine Song', 12, 'Inglês', '01:58:00', FALSE, '2024-12-31', 'A vida de um motorista de ônibus e poeta em uma cidade pacata.'),
+('The Outsiders', 1983, 'Francis Ford Coppola', 14, 'Inglês', '01:45:00', FALSE, '2024-12-31', 'Grupos de jovens de classes sociais opostas enfrentam tensões em uma pequena cidade americana.'),
+('RRR', 2022, 'S. S. Rajamouli', 16, 'Telugu', '03:05:00', FALSE, '2024-12-31', 'Dois revolucionários lutam pela liberdade contra o Império Britânico na Índia.'),
+('Paper Moon', 1973, 'Peter Bogdanovich', 14, 'Inglês', '01:42:00', FALSE, '2024-12-31', 'Um vigarista e uma menina de 9 anos formam uma dupla improvável nas estradas do Kansas.'),
+('Godzilla Minus One', 2023, 'Takashi Yamazaki', 16, 'Japonês', '02:04:00', FALSE, '2024-12-31', 'Godzilla ameaça a reconstrução do Japão após a Segunda Guerra Mundial.'),
+('Parasite', 2019, 'Bong Joon Ho', 16, 'Coreano', '02:12:00', FALSE, '2024-12-31', 'Uma família pobre se infiltra na vida de uma família rica com consequências inesperadas.'),
+('The Grand Budapest Hotel', 2014, 'Wes Anderson', 14, 'Inglês', '01:39:00', FALSE, '2024-12-31', 'Aventuras excêntricas em um luxuoso hotel europeu durante a guerra.'),
+('Portrait of a Lady on Fire', 2019, 'Céline Sciamma', 14, 'Francês', '02:00:00', FALSE, '2024-12-31', 'Uma pintora e sua modelo se envolvem em um romance proibido na França do século XVIII.'),
+('Amélie', 2001, 'Jean-Pierre Jeunet', 12, 'Francês', '02:02:00', FALSE, '2024-12-31', 'Uma jovem tímida decide fazer boas ações e mudar a vida das pessoas ao seu redor.'),
+('Cinema Paradiso', 1988, 'Giuseppe Tornatore', 12, 'Italiano', '02:35:00', FALSE, '2024-12-31', 'Um cineasta relembra sua infância em um pequeno cinema italiano.'),
+('The Handmaiden', 2016, 'Park Chan-wook', 18, 'Coreano', '02:25:00', FALSE, '2024-12-31', 'Uma trama de engano e paixão se desenrola entre uma rica herdeira e sua criada.'),
+('City of God', 2002, 'Fernando Meirelles', 18, 'Português', '02:10:00', FALSE, '2024-12-31', 'História de jovens em uma favela violenta do Rio de Janeiro nos anos 70.'),
+('Spirited Away', 2001, 'Hayao Miyazaki', 10, 'Japonês', '02:05:00', FALSE, '2024-12-31', 'Uma menina fica presa em um mundo mágico e precisa encontrar uma maneira de salvar seus pais.'),
+('The Farewell', 2019, 'Lulu Wang', 10, 'Inglês', '01:40:00', FALSE, '2024-12-31', 'Uma jovem lida com a doença da avó em um plano familiar de mantê-la sem saber.'),
+('Memories of Murder', 2003, 'Bong Joon Ho', 16, 'Coreano', '02:11:00', FALSE, '2024-12-31', 'Investigadores tentam resolver uma série de assassinatos em uma pequena cidade sul-coreana.');
+
 
 INSERT INTO genero (nome)
 VALUES
@@ -415,28 +416,28 @@ INSERT INTO funcionario (data_contratado, cpf, nome, sobrenome, trabalha_em) VAL
     ('2023-05-24', '27921412203', 'Felipe', 'Campos', '50568161000154');
 
 INSERT INTO "gerente" (email, senha, cpf) VALUES
-('mariane_silva@hotmal.com', '8MpjXUmx8N', '89124031682'),
-('gabriela_ferreira@dep.ufscar.br', 'HpJbrBqhxr', '43480263941'),
-('caiocalebmonteiro@bluespropaganda.com', 'Fyxgpqsx67', '02828806316'),
-('leonardo.luiz.dacunha@ouplook.com', 'oYNSSqnToy', '53105528202'),
-('nataliaelzanascimento@gat.com.br', 'onyWcHbCQG', '79332255350'),
-('debora.giovana.caldeira@cdcd.com.br', 'zhAlJroroU', '78792612148'),
-('carolina_luciana_costa@abrangenciacorretora.com.br', 'bdNMWDxf0s', '12389485103'),
-('enzo_novaes@contabilidaderangel.com.br', 'Rb4FJeISQU', '13959097840'),
-('severino_sebastiao_farias@amoamar.com.br', 'bfmSSQ4k01', '03988437832'),
-('pedrohenriqueassuncao@2emesconstrutora.com.br', 'UXeCjbXMhs', '46790330615');
+('mariane_silva@hotmal.com', 'argon2$argon2id$v=19$m=102400,t=2,p=8$ZWZMcmdFR0tFYzgwR2txUTAzQkY4Qw$qRE/kkUdEWRTo1hywfJ1pa9jmWZJo4j+Prg26GoTS6k', '89124031682'),
+('gabriela_ferreira@dep.ufscar.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$OU5hZHpyclJYbHB3aDVFYlBNNXQ5ag$jXq4GNmq5ESyzreWmaHpo2qSXZOcEpy0+g0jwQSi+bU', '43480263941'),
+('caiocalebmonteiro@bluespropaganda.com', 'argon2$argon2id$v=19$m=102400,t=2,p=8$eks3cGNvaXdpUFRsZFZXUTdhR0JxZQ$Waidc6drJSL3qXG+waegmNgJQhTgQhIPhbmY/lkHWoE', '02828806316'),
+('leonardo.luiz.dacunha@ouplook.com', 'argon2$argon2id$v=19$m=102400,t=2,p=8$RmFJZ2w4S1N6R0ltNGZ6dFJndFlTZw$NLctH6/ykRjeUjQJ/ZigsKf7lo/M4nQh0DQKaqf+4MQ', '53105528202'),
+('nataliaelzanascimento@gat.com.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$YTZsWktFMEdhTmVTNHA4aFF0OFhSMQ$GcyJuDorqHJ3LLyW1AXfB0XA+zHq21OdElpLqW8hGLM', '79332255350'),
+('debora.giovana.caldeira@cdcd.com.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$R0RmYkp3SVRxdHJYUWVDSkZOREM1TA$uBowIjS/01tPxPMknynJUl/nS3MyJ49EK+C3Xe/JFEY', '78792612148'),
+('carolina_luciana_costa@abrangenciacorretora.com.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$WTI4Y292ZWRlQTREUGVTRHBtMzdLQg$71Ohbmk/p8QSbfk9GHeBD5WDl066yBvhhZQY2TKWfUo', '12389485103'),
+('enzo_novaes@contabilidaderangel.com.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$cVFVVksxZkFaMElUVnJrWllWWmR5UA$fSsqr57/A9xV88EjallUFmR0PKv5OYEDqKTf0XHcofg', '13959097840'),
+('severino_sebastiao_farias@amoamar.com.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$UjRPaGR1eHRDdUxIS2g2RUlFaHJRQQ$i3Utl0r5A0jlw+hFFamdzleYu+eMXwVHm9YIzD2qQ6s', '03988437832'),
+('pedrohenriqueassuncao@2emesconstrutora.com.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$RXI2WkdyRlpzSjB0TFBvN3FwT1ZJRQ$RYpnMD4vAKCfhMvHQFADZE75WuKT4hYqQ5fsejQUMrI', '46790330615');
 
 INSERT INTO "administrador" (email, senha, cpf) VALUES
-('vinicius-lima98@sp.gov.br', 'PBlRMiJ2b7', '68239079750'),
-('sophie_sara_cortereal@51hotmail.com', 'GWgBU1S1fp', '79060892356'),
-('marlene.daiane.mendes@focusgrafica.com.br', 'JfBxiLUu5p', '60261456059'),
-('louise_mariane_teixeira@abdalathomaz.adv.br', 'oz6PLnsGJh', '97035443983'),
-('levi.eduardo.galvao@lifefp.com.br', 't1YNQSDLGh', '51046838180'),
-('renato-rocha90@ahlstrom.com', 'RCN2JO1d6T', '94075044092'),
-('anderson-assis73@evolink.com.br', 'Bemj6bZLNA', '74841612335'),
-('sarah.maya.ramos@tricoproducts.com.br', '6KspK0ynd1', '48242155526'),
-('julio_baptista@tuenkers.com.br', 'CJmTyhgK5y', '05317196345'),
-('barbara_luciana_jesus@wizardararaquara.com.br', '61WQyAtCpj', '66036434995');
+('vinicius-lima98@sp.gov.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$cFJXVDVEeDAzY3lXTktla2p4MGdldw$3ncVGiPX3uxNH35uWxP2XikPygmPqudXI1J10QNWVFA', '68239079750'),
+('sophie_sara_cortereal@51hotmail.com', 'argon2$argon2id$v=19$m=102400,t=2,p=8$OGZ3T3NObnptaEJPcko2MThtUjNYZQ$nyMr+OhGDOKjDeFV1yqM/+eWQCCjY6sbGWXdk/tEnXI', '79060892356'),
+('marlene.daiane.mendes@focusgrafica.com.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$cks2RFhIZEZBRG13N3ppaUV3RFlwUQ$c8r6BKCPyeHQ6VyyN66+jHJ75bJkE25VoXUatcbdoO4', '60261456059'),
+('louise_mariane_teixeira@abdalathomaz.adv.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$bGZCclNXaWdJbjBWdnJWZXB4bzljeQ$g9WiHB7CRdtrdjIp2jWzewItZDOJNVjM0xZwggYbXpo', '97035443983'),
+('levi.eduardo.galvao@lifefp.com.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$djFHandvbHNwNTR2OGNNT29iMk83MQ$Ty0vjpItlVGYDgyyOO6ARhRcDFd/EB6qtFB5pulfxMY', '51046838180'),
+('renato-rocha90@ahlstrom.com', 'argon2$argon2id$v=19$m=102400,t=2,p=8$dWZGelBkY2VSdHRNQm5lYkFrVXF6TA$qIXTqVRyr6rk4iUTeTqzrvOHmMEKWv+3uBpcnpKXGU0', '94075044092'),
+('anderson-assis73@evolink.com.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$NUpONU1ORThXWWw2N01GMTV4UEpEYg$aWn0wfpq0kyXITghtRApa+NcWa0JIT8cZhrWWk2e548', '74841612335'),
+('sarah.maya.ramos@tricoproducts.com.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$TEQ4VVlxSnFtb1ZjVUc5VzhSUGZSTA$0lWsQTgQtGVXFwtmFRcAR36SY5B2pc6FhxbMlJglWQ8', '48242155526'),
+('julio_baptista@tuenkers.com.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$dWdaNGxtQnNkOGVWSnZ3SVJGbEYxcg$xeWI1BRzVbj0+BaLx6xOVOp6x+GOaoVauqWvW66m60c', '05317196345'),
+('barbara_luciana_jesus@wizardararaquara.com.br', 'argon2$argon2id$v=19$m=102400,t=2,p=8$RE53TlY0UzhSZHdyRkJHTWhvTVBCdg$p4gZ70U4C/blGdtHldRloYTx6mb3gvfsqJkopmjYTlU', '66036434995');
 
 INSERT INTO "fcomum" ("cpf") VALUES
 ('55081243493'),
