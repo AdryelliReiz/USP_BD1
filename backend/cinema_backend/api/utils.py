@@ -9,3 +9,8 @@ class RawSQLHelper:
             rows = cursor.fetchall()
         # Format results as list of dictionaries
         return [dict(zip(columns, row)) for row in rows]
+
+    def execute_query_execute(query, params=None):
+        with connection.cursor() as cursor:
+            cursor.execute(query, params or [])
+        return

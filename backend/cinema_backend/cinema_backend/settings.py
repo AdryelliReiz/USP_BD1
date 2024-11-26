@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-c2%n09x21&fi%t7hx=s91i2m2fkxu(%_p0j4_!k9nsc94q)*mg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0/0", "localhost"]
+ALLOWED_HOSTS = ["0.0.0.0/0", "localhost", "10.8.9.150", "127.0.0.1:8000", "0.tcp.sa.ngrok.io"]
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     'rest_framework_simplejwt',
+    'corsheaders',
     "api",
 ]
 
@@ -51,6 +52,8 @@ MIDDLEWARE = [
     # "django.contrib.auth.middleware.AuthenticationMiddleware",
     # "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = "cinema_backend.urls"
@@ -152,7 +155,7 @@ MIGRATION_MODULES = {
 AUTH_USER_MODEL = 'api.User'
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=360),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=180),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
@@ -163,3 +166,9 @@ SIMPLE_JWT = {
     'ISSUER': None,
 }
 # os.environ.get("DJANGO_SECRET_KEY", get_random_secret_key())
+
+# CORS_ALLOWED_ORIGINS = [
+#     'http://0.0.0.0',
+# ]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True

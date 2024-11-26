@@ -72,6 +72,9 @@ router.register(r'client/orders', ClientOrderView, basename='client-orders')
 
 router.register(r'totem/cinemas', TotemCinemaView, basename='totem-cinemas')
 router.register(r'totem/movies', TotemMovieView, basename='totem-movies')
+# router.register(r'totem/movies/<str:cnpj>', TotemMovieView, basename='totem-movies')
+# router.register(r'totem/movies/<str:cnpj>/<str:dia>', TotemMovieView, basename='totem-movies-dia')
+# router.register(r'totem/movies/<str:cnpj>/<str:dia>/<str:filme_id>', TotemMovieView, basename='totem-movies-dia-filme')
 
 # Session & Seat Selection
 

@@ -20,13 +20,14 @@ class AdminLoginView(ViewSet):
             return Response({"error": "Email and password are required"}, status=status.HTTP_400_BAD_REQUEST)
 
         query = """
-            SELECT f.*, email, senha, role
+            SELECT f.*, email, senha, trabalha_em, c.nome AS cinema_nome, role
             FROM funcionario f
             JOIN (
                 SELECT *, 'admin' AS role FROM administrador
                 UNION
                 SELECT *, 'staff' AS role FROM gerente
             ) AS super_roles ON f.cpf = super_roles.cpf
+            INNER JOIN cinema AS c ON f.trabalha_em = c.cnpj
             WHERE super_roles.email = %s
         """
         user_data = RawSQLHelper.execute_query(query, [email])
@@ -46,6 +47,8 @@ class AdminLoginView(ViewSet):
         refresh["user_id"] = user_data["cpf"]
         refresh["nome"] = user_data["nome"]
         refresh["sobrenome"] = user_data["sobrenome"]
+        refresh["cinema_id"] = user_data["trabalha_em"]
+        refresh["cinema_nome"] = user_data["cinema_nome"]
         refresh["role"] = user_data["role"]
         return Response({
             "refresh": str(refresh),

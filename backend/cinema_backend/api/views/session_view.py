@@ -4,4 +4,4 @@ from rest_framework import viewsets
 
 class SessionView(viewsets.ViewSet):
     def list(self, request):
-        return;
+        return
