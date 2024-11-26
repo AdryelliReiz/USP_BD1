@@ -12,7 +12,7 @@ class TotemPaymentView(ViewSet):
 
     def create(self, request):
         """
-        POST /payments
+        POST /payment
         Registers a sale for a session, given the client CPF (optional), session ID, selected seats, and payment method.
         """
         cpf = request.data.get("cpf")  # Client CPF (nullable)

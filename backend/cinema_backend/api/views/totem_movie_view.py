@@ -30,6 +30,7 @@ class TotemMovieView(ViewSet):
                     filme AS f ON se.filme_id = f.id
                 WHERE
                     sa.cinema_id = %s
+                    AND se.data >= CURRENT_DATE
                 GROUP BY
                     se.data, f.id, f.titulo, f.ano, f.diretor, f.class_ind, f.idioma, f.duracao, f.eh_dub, f.fim_contrato, f.descricao
                 ORDER BY

@@ -30,9 +30,16 @@ class TotemTicketView(ViewSet):
             END AS nome,
             'monetario' AS tipo_pago
         FROM ingresso
-        WHERE sessao_id = %s
+        INNER JOIN pertence ON ingresso.id = pertence.ingresso_id
+        INNER JOIN sessao ON pertence.sessao_n = sessao.numero
+        WHERE sessao.numero = %s
+        AND tipo IS NOT NULL;
         """
         ticket_data = RawSQLHelper.execute_query(ticket_query, [pk])
+
+        for ticket in ticket_data:
+            if ticket['valor'].startswith('$'):
+                ticket['valor'] = float(ticket['valor'].replace('$', '').replace(',', ''))
 
         # Se CPF for cadastrado, verifica os seus pontos
         points_balance = 0
