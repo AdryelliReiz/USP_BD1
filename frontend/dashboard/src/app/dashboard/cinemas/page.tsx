@@ -2,8 +2,9 @@
 
 import Table from "@/components/Table";
 import { useSession } from "@/context/sessionContext";
+import api from "@/services/api";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiPlus, BiSearch, BiTrash, BiEdit } from "react-icons/bi";
 import {MdClose} from "react-icons/md";
 
@@ -91,6 +92,10 @@ export default function CinemasPage(){
         setCinemaSelected(cinemaIndex);
         setModalIsOpen(!modalIsOpen);
     }
+
+    //useEffect(() => {
+    //    const {} = api.get('/cinemas');
+    //W}, [])
     
     return (
         <section>
