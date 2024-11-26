@@ -19,8 +19,16 @@
     width: 100%; /* Garante que o conteúdo ocupe a largura total disponível */
     margin: 0 auto; /* Centraliza o conteúdo no meio da tela */
     display: flex;
-    gap: 20px;
-    align-items: flex-start;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+
+  .header-cinema {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
   }
 
   .back-button {
@@ -37,9 +45,6 @@
     gap: 5px; /* Espaçamento entre o texto e o símbolo */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para profundidade */
     transition: all 0.3s ease-in-out; /* Animação para interatividade */
-    margin-bottom: 8rem;
-    margin-top: -3.8rem;
-    margin-left: -70rem;
 
     &:hover {
       background-color: #902edf; /* Cor de fundo no hover */
@@ -60,37 +65,32 @@
   .title {
     text-align: center;
     font-size: 32px;
-    margin-bottom: 25px;
-    margin-top: 25px;
-    margin-right: 16rem;
   }
 
   .sessions {
-    flex: 1;
-    margin-top: -6rem;
-    margin-left: -10rem;
+    width: 100%;
 
     .divider {
-      width: 80%; /* Largura da linha */
+      width: 100%; /* Largura da linha */
       height: 2px; /* Espessura da linha */
       background-color: #ffffff; /* Cor da linha */
       border: none; /* Remove bordas padrão */
-      margin: 7px auto; /* Espaçamento acima e abaixo */
+      margin: 7px 0; /* Espaçamento acima e abaixo */
       opacity: 0.6; /* Transparência opcional */
-      margin-top: -13px;
-      margin-bottom: 40px;
     }
 
     h2 {
       font-size: 28px;
-      margin-bottom: 29px;
-      margin-left: 160px;
+    }
+
+    .sessions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
 
     .session-room {
-      margin-bottom: 40px;
-      margin-left: 200px;
-
       p {
         margin: 0 0 10px 0;
         font-size: 25px;
@@ -123,9 +123,9 @@
   }
 
   .movie-details {
-    flex: 0;
+    width: 100%;
+    max-width: 400px;
     display: flex;
-    height: 175%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -133,9 +133,7 @@
     padding: 24px;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
-    margin-top: -18.2rem;
     color: #ffffff; /* Texto branco */
-    margin-right: -4rem;
 
     img {
       width: 230px;

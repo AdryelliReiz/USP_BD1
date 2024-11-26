@@ -1,11 +1,14 @@
 .cinema-container {
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem 4rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: linear-gradient(var(--purple-01), var(--purple-03));
   color: white;
-  min-height: 100vh;
-  padding: 20px;
+  
 }
 
 .cinema-title {
@@ -20,16 +23,19 @@
 }
 
 .date-tabs {
+  width: 100%;
   display: flex;
-  gap: 10px;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
   margin-bottom: 35px;
+  border-bottom: 1px solid white;
 
   button {
     background: none;
     color: white;
     border: 1px solid white;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
     cursor: pointer;
 
     &.active-tab {
@@ -41,16 +47,15 @@
 }
 
 .films-container {
-  display: flex;
-  gap: 70px;
-  justify-content: center;
-  flex-wrap: wrap;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
 }
 
 .film-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 200px;
 
   .film-poster-button {
@@ -61,23 +66,22 @@
 
   .film-poster {
     width: 100%;
-    border-radius: 15px;
+    border-radius: 0.5rem;
   }
 
   .film-title {
-    font-size: 1rem;
-    margin: 10px 0;
-    text-align: center;
+    font-size: 1.175rem;
+    margin: 1rem 0;
   }
 
   .film-times {
     display: flex;
-    gap: 5px;
+    gap: 0.5rem;
     flex-wrap: wrap;
 
     .film-time {
       background-color: white;
-      color: #4a148c;
+      color: var(--purple-03);
       padding: 5px 10px;
       border-radius: 5px;
       font-size: 0.9rem;
