@@ -11,42 +11,48 @@ export default function Session() {
         <h1 className="cinema-logo">CINEACH</h1>
       </header>
 
-      <h1 className="title">SELECIONE UMA SESSÃO</h1>
+      <div className="header-cinema">
+        <button className="back-button" onClick={() => setTabActive(tabActive - 1)}>
+          &lt; Voltar
+        </button>
 
-      <button className="back-button" onClick={() => setTabActive(tabActive - 1)}>
-        &lt; Voltar
-      </button>
+        <h1 className="title">SELECIONE UMA SESSÃO</h1>
+
+        <div />
+      </div>
 
       <div className="content">
         <div className="sessions">
           <h2>Sessões - Hoje</h2>
           <hr className="divider" />
 
-          <div className="session-room">
-            <p>
-              <strong>Sala 1</strong> <span className="tag">dub</span> <span className="tag">3D</span>
-            </p>
-            <div className="times">
-              <button onClick={() => setTabActive(tabActive + 1)}>13:30</button>
-              <button onClick={() => setTabActive(tabActive + 1)}>20:20</button>
+          <div className="sessions-list">
+            <div className="session-room">
+              <p>
+                <strong>Sala 1</strong> <span className="tag">dub</span> <span className="tag">3D</span>
+              </p>
+              <div className="times">
+                <button onClick={() => setTabActive(tabActive + 1)}>13:30</button>
+                <button onClick={() => setTabActive(tabActive + 1)}>20:20</button>
+              </div>
             </div>
-          </div>
 
-          <div className="session-room">
-            <p>
-              <strong>Sala 5</strong> <span className="tag">leg</span>
-            </p>
-            <div className="times">
-              <button onClick={() => setTabActive(tabActive + 1)}>19:10</button>
+            <div className="session-room">
+              <p>
+                <strong>Sala 5</strong> <span className="tag">leg</span>
+              </p>
+              <div className="times">
+                <button onClick={() => setTabActive(tabActive + 1)}>19:10</button>
+              </div>
             </div>
-          </div>
 
-          <div className="session-room">
-            <p>
-              <strong>Sala 7</strong> <span className="tag">dub</span> <span className="tag">IMax</span>
-            </p>
-            <div className="times">
-              <button onClick={() => setTabActive(tabActive + 1)}>20:50</button>
+            <div className="session-room">
+              <p>
+                <strong>Sala 7</strong> <span className="tag">dub</span> <span className="tag">IMax</span>
+              </p>
+              <div className="times">
+                <button onClick={() => setTabActive(tabActive + 1)}>20:50</button>
+              </div>
             </div>
           </div>
         </div>
