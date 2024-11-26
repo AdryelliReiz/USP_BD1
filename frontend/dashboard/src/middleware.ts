@@ -1,11 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { jwtVerify } from 'jose';
+import { decodeJwt } from 'jose';
 
-export type ISession = {
-    userId: string;
-    name: string;
-    type: 'admin' | 'gerente';
+type NewType = {
+    token_type: string;
+    exp: number;
+    iat: number;
+    jti: string;
+    user_id: string;
+    nome: string;
+    sobrenome: string;
+    cinema_id: string;
+    cinema_nome: string;
+    role: "admin" | "gerente";
+    access_token: string;
 };
+
+export type ISession = NewType;
 
 // Rotas protegidas e específicas
 const protectedRoutes = ['/dashboard'];
@@ -29,11 +39,23 @@ export default async function middleware(req: NextRequest) {
     }
 
     // Verificar o token
-    const secretKey = new TextEncoder().encode('palavra-secreta');
     let session: ISession;
     try {
-        const { payload } = await jwtVerify(access_token, secretKey);
-        session = payload as ISession;
+        const payload = decodeJwt(access_token) as NewType;
+
+        session = {
+            token_type: payload.token_type,
+            exp: payload.exp,
+            iat: payload.iat,
+            jti: payload.jti,
+            user_id: payload.user_id,
+            nome: payload.nome,
+            sobrenome: payload.sobrenome,
+            cinema_id: payload.cinema_id,
+            cinema_nome: payload.cinema_nome,
+            role: payload.role,
+            access_token: access_token
+        };
     } catch (error) {
         console.log(error);
         // Token inválido ou expirado
@@ -44,18 +66,17 @@ export default async function middleware(req: NextRequest) {
     }
 
     // Controle de acesso para admins
-    if (session.type === 'admin') {
+    if (session.role === 'admin') {
         return NextResponse.next(); // Admins têm acesso irrestrito
     }
 
     // Controle de acesso para gerentes
-    if (session.type === 'gerente') {
+    if (session.role === 'gerente') {
         const isAllowedForGerente = gerenteAllowedRoutes.some((route) =>
             path.startsWith(route)
         );
         if (!isAllowedForGerente) {
-            const cinemaId = "1"
-            return NextResponse.redirect(new URL(`/dashboard/cinemas/${cinemaId}`, req.nextUrl));
+            return NextResponse.redirect(new URL(`/dashboard/cinemas/${session.cinema_id}`, req.nextUrl));
         }
         return NextResponse.next();
     }
