@@ -1,0 +1,45 @@
+services:
+  totem:
+    build:
+      context: ./frontend/totem
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80" # Expose Nginx on port 3000
+    depends_on:
+      - backend
+    networks:
+      - app_network
+
+  backend:
+    build:
+      context: ./backend/cinema_backend
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000" # Backend exposed on port 8000
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://user:password@db:5432/dbname
+    networks:
+      - app_network
+
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: cinemaUser
+      POSTGRES_PASSWORD: Cinema@Senha007
+      POSTGRES_DB: cinemaDB
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - app_network
+
+volumes:
+  db_data:
+
+networks:
+  app_network:
+    driver: bridge
+
