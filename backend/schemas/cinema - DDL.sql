@@ -24,7 +24,7 @@ CREATE TABLE "pontos" (
   "cliente_id" varchar(11),
   PRIMARY KEY ("data", "hora", "cliente_id")
 );
- 
+
 CREATE TABLE "ingresso" (
   "tipo" smallint,
   "id" serial PRIMARY KEY,
@@ -43,7 +43,8 @@ CREATE TABLE "sessao" (
   "hora" time,
   "numero" serial PRIMARY KEY,
   "sala_id" smallint,
-  "filme_id" integer
+  "filme_id" integer,
+  UNIQUE("data", "hora", "sala_id")
 );
 
 CREATE TABLE "filme" (
@@ -56,7 +57,7 @@ CREATE TABLE "filme" (
   "duracao" time,
   "eh_dub" boolean,
   "fim_contrato" date,
-  "descricao" varchar(255)
+  "descricao" varchar(255),
 );
 
 CREATE TABLE "genero_filme" (
@@ -84,7 +85,8 @@ CREATE TABLE "sala" (
   "suporta_3d" boolean,
   "qtde_poltronas" smallint,
   "numero" smallint PRIMARY KEY,
-  "cinema_id" char(14)
+  "cinema_id" char(14),
+  "eh_ativo" boolean DEFAULT TRUE
 );
 
 CREATE TABLE "cinema" (
