@@ -4,11 +4,33 @@ services:
       context: ./frontend/totem
       dockerfile: Dockerfile
     ports:
-      - "3000:80" # Expose Nginx on port 3000
+      - "3000:80"
     depends_on:
       - backend
     networks:
       - app_network
+
+  website:
+    build:
+      context: ./frontend/website
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
+    networks:
+      - app_network
+
+  # dashboard:
+  #   build:
+  #     context: ./frontend/dashboard
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3002:3000"
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - app_network
 
   backend:
     build:
@@ -19,7 +41,7 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://user:password@db:5432/dbname
+      - DATABASE_URL=postgres://cinemaUser:Cinema@Senha007@db:5432/cinemaDB
     networks:
       - app_network
 
