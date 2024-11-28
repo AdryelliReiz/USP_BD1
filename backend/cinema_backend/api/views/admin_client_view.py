@@ -6,7 +6,53 @@ from api.permissions import IsStaffOrAdmin
 class AdminClientView(ViewSet):
     permission_classes = [IsStaffOrAdmin]
     def list(self, request):
-        query = "SELECT * FROM cliente WHERE email LIKE %s"
-        client_data = RawSQLHelper.execute_query(query, ["%marcia%"])
+        search = request.query_params.get("search")
+
+        query = """
+                SELECT
+                C.nome,
+                C.sobrenome,
+                C.cpf,
+                C.telefone,
+                C.rua,
+                C.n_end,
+                C.complemento,
+                SUM(P.qtde) AS saldo_pontos
+                FROM
+                cliente AS C
+                INNER JOIN
+                pontos AS P
+                ON C.cpf = P.cliente_id
+                WHERE C.nome ILIKE %s
+                OR C.cpf ILIKE %s
+                OR C.email ILIKE %s
+                GROUP BY C.cpf
+                """
+
+        client_data = RawSQLHelper.execute_query(query, [f"%{search}%", f"%{search}%", f"%{search}%"])
+
         print(client_data)
         return Response(client_data)
+
+    def destroy(self, request):
+        cpf = request.data.get("cpf")
+
+        checkQuery = """
+                SELECT *
+                FROM cliente
+                WHERE cpf = %s
+                """
+
+        check = RawSQLHelper.execute_query(query, cpf)
+
+        query = """
+                DELETE
+                FROM cliente
+                WHERE cpf = %s
+                """
+
+        if not check:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        RawSQLHelper.execute_query(query, cpf)
+        return Response(status=status.HTTP_200_OK)

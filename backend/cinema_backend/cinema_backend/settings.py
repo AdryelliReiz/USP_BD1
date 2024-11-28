@@ -45,6 +45,8 @@ DEBUG = True
 DEBUG = env("DEBUG")
 # SECRET_KEY = env("SECRET_KEY", default="default-secret-key")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["0.0.0.0/0", "localhost", "10.8.9.150", "127.0.0.1:8000", "0.tcp.sa.ngrok.io", "172.115.11.32"])
+OMDB_API_KEY = env("OMDB_API_KEY", default="")
+TMDB_API_KEY = env("TMDB_API_KEY", default="")
 
 
 # Application definition
@@ -109,7 +111,7 @@ DATABASES = {
     # }
     'default': env.db(
         "DATABASE_URL",
-        default="postgres://cinemaUser:Cinema@Senha007@localhost:5433/cinemaDB"
+        default="postgres://cinemaUser:Cinema@Senha007@localhost:5432/cinemaDB"
     )
 }
 

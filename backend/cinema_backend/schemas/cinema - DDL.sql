@@ -57,7 +57,8 @@ CREATE TABLE "filme" (
   "duracao" time,
   "eh_dub" boolean,
   "fim_contrato" date,
-  "descricao" varchar(255)
+  "descricao" varchar(255),
+  "poster_url" varchar(255)
 );
 
 CREATE TABLE "genero_filme" (
@@ -129,7 +130,8 @@ CREATE TABLE "pertence" (
   "poltrona_n" smallint,
   "poltrona_l" char(1),
   "sala_id" smallint,
-  PRIMARY KEY ("ingresso_id", "sessao_n", "poltrona_n", "poltrona_l", "sala_id")
+  PRIMARY KEY ("ingresso_id", "sessao_n", "poltrona_n", "poltrona_l", "sala_id"),
+  UNIQUE("sessao_n", "poltrona_n", "poltrona_l")
 );
 
 ALTER TABLE "pontos" ADD FOREIGN KEY ("cliente_id") REFERENCES "cliente" ("cpf");

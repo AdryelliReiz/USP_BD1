@@ -14,7 +14,7 @@ class CinemaEmployeeView(ViewSet):
 
     def retrieve(self, request, pk):
         query = """
-            SELECT F.nome, C.cpf
+            SELECT F.nome, F.sobrenome, C.cpf
             FROM funcionario AS F
             INNER JOIN fcomum AS C
             ON F.cpf = C.cpf
@@ -23,7 +23,5 @@ class CinemaEmployeeView(ViewSet):
 
         cinemaEmployeeData = RawSQLHelper.execute_query(query, [pk])
 
-        if not cinemaEmployeeData:
-            return Response({"error": "Invalid CNPJ or number of employees."}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(cinemaEmployeeData)

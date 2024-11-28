@@ -1,97 +1,68 @@
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from api.utils import RawSQLHelper
+
 from rest_framework import viewsets
-from datetime import datetime, timedelta
-from api.permissions import IsAdmin
+from datetime import datetime
+from api.permissions import IsStaffOrAdmin
 
 class CinemaReportView(viewsets.ViewSet):
 
-    permission_classes = [IsAdmin]
+    permission_classes = [IsStaffOrAdmin]
 
-    def get(self, request):
+    def get(self, request, cnpj):
 
-         # 1. Faturamento do mes anterior
-        last_month = (datetime.now() - timedelta(days=30)).month
-        current_year = datetime.now().year
-        query_last_month_revenue = """
-        SELECT SUM(valor_total::numeric) AS faturamento_mes_anterior
-        FROM ingresso
-        WHERE EXTRACT(MONTH FROM data) = %s AND EXTRACT(YEAR FROM data) = %s
+        query_faturamento_mes_anterior = """
+        SELECT SUM(i.valor) AS faturamento_mes_anterior
+        FROM venda v
+        JOIN ingresso i ON v.ingresso_id = i.id
+        JOIN sessao ss ON v.sessao_id = ss.id
+        JOIN sala s ON ss.sala_id = s.id
+        JOIN cinema c ON s.cinema_id = c.id
+        WHERE c.cnpj = %s AND v.data_venda BETWEEN DATE_TRUNC('month', CURRENT_DATE - INTERVAL '1 month') AND
+                                            (DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 day')
         """
+        faturamento_mes_anterior = RawSQLHelper.execute_query(query_faturamento_mes_anterior, [cnpj])[0]['faturamento_mes_anterior']
 
-        last_month_revenue = RawSQLHelper.execute_query(query_last_month_revenue, [last_month, current_year])[0].get('faturamento_mes_anterior', 0)
-
-        # 2. Faturamento do mes atual
-        current_month = datetime.now().month
-        query_current_month_revenue =  """
-        SELECT SUM(valor_total::numeric) AS faturamento_mes_atual
-        FROM ingresso
-        WHERE EXTRACT(MONTH FROM data) = %s AND EXTRACT(YEAR FROM data) = %s
+        query_ingressos_vendidos = """
+        SELECT i.tipo, COUNT(*) AS quantidade_vendida
+        FROM venda v
+        JOIN ingresso i ON v.ingresso_id = i.id
+        JOIN sessao ss ON v.sessao_id = ss.id
+        JOIN sala s ON ss.sala_id = s.id
+        JOIN cinema c ON s.cinema_id = c.id
+        WHERE c.cnpj = %s
+        GROUP BY i.tipo
         """
-        current_month_revenue = RawSQLHelper.execute_query(query_current_month_revenue, [current_month, current_year])[0].get('faturamento_mes_atual', 0)
+        ingressos_vendidos = RawSQLHelper.execute_query(query_ingressos_vendidos, [cnpj])
 
-        # 3. Faturamento por cinema
-        query_cinema_revenue = """
-        SELECT
-            c.cnpj,
-            c.nome,
-            COALESCE(SUM(i.valor_total::numeric), 0) AS faturamento
-        FROM cinema c
-        LEFT JOIN sala s ON s.cinema_id = c.cnpj
-        LEFT JOIN sessao se ON se.sala_id = s.numero
-        LEFT JOIN pertence p ON p.sessao_n = se.numero
-        LEFT JOIN ingresso i ON i.id = p.ingresso_id
-        GROUP BY c.cnpj, c.nome
-        ORDER BY faturamento DESC
-        """
-        cinema_revenues = RawSQLHelper.execute_query(query_cinema_revenue)
-
-        # 4. Ingressos mais vendidos
-        query_top_tickets = """
-        SELECT
-            CASE
-                WHEN tipo = 0 THEN 'Meia'
-                WHEN tipo = 1 THEN 'Inteiro'
-                ELSE 'Club'
-            END AS tipo_ingresso,
-            COUNT(*) AS vendidos
-        FROM ingresso
-        GROUP BY tipo
-        ORDER BY vendidos DESC
-        """
-        top_tickets = RawSQLHelper.execute_query(query_top_tickets)
-
-        # 5. Filmes mais vendidos (ativos)
-        query_top_movies = """
-        SELECT
-            f.titulo,
-            g.nome AS genero,
-            SUM(i.valor_total::numeric) AS faturamento,
-            COUNT(DISTINCT se.numero) AS sessoes_exibidas,
-            ROUND(
-                100.0 * SUM(CASE WHEN p.ingresso_id IS NOT NULL THEN 1 ELSE 0 END) /
-                NULLIF(SUM(sa.qtde_poltronas), 0), 2
-            ) AS aproveitamento
+        # Filmes mais vendidos para o cinema especifico
+        query_filmes_mais_vendidos = """
+        SELECT f.id, f.titulo,
+               g.nome AS genero,
+               SUM(i.valor) AS faturamento,
+               COUNT(ss.id) AS sessoes_exibidas,
+               (SUM(v.qtd_ingressos) * 100) / (s.total_poltronas) AS aproveitamento
         FROM filme f
-        LEFT JOIN sessao se ON se.filme_id = f.id
-        LEFT JOIN sala sa ON sa.numero = se.sala_id
-        LEFT JOIN pertence p ON p.sessao_n = se.numero
-        LEFT JOIN ingresso i ON i.id = p.ingresso_id
-        LEFT JOIN genero_filme gf ON gf.filme_id = f.id
-        LEFT JOIN genero g ON g.id = gf.genero_id
-        WHERE f.fim_contrato IS NULL OR f.fim_contrato > NOW()
-        GROUP BY f.titulo, g.nome
+        JOIN sessao ss ON f.id = ss.filme_id
+        JOIN sala s ON ss.sala_id = s.id
+        JOIN venda v ON ss.id = v.sessao_id
+        JOIN ingresso i ON v.ingresso_id = i.id
+        LEFT JOIN genero_filme gf ON f.id = gf.filme_id
+        LEFT JOIN genero g ON gf.genero_id = g.id
+        JOIN cinema c ON s.cinema_id = c.id
+        WHERE c.cnpj = %s AND f.fim_contrato > CURRENT_DATE
+        GROUP BY f.id, f.titulo, g.nome
         ORDER BY faturamento DESC
         """
-        top_movies = RawSQLHelper.execute_query(query_top_movies)
+        filmes_mais_vendidos = RawSQLHelper.execute_query(query_filmes_mais_vendidos, [cnpj])
 
-        response_data = {
-            "faturamento_mes_anterior": last_month_revenue,
-            "faturamento_mes_atual": current_month_revenue,
-            "faturamento_por_cinema": cinema_revenues,
-            "ingressos_mais_vendidos": top_tickets,
-            "filmes_mais_vendidos": top_movies,
+        # Montando a resposta
+        report = {
+            "faturamento_mes_anterior": faturamento_mes_anterior,
+            "faturamento_mes_atual": faturamento_mes_atual,
+            "ingressos_vendidos": ingressos_vendidos,
+            "filmes_mais_vendidos": filmes_mais_vendidos
         }
 
-        return Response(response_data, status=200)
+        return Response(report, status=status.HTTP_200_OK)

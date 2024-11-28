@@ -21,6 +21,7 @@ class TotemMovieView(ViewSet):
                     f.eh_dub,
                     f.fim_contrato,
                     f.descricao,
+                    f.poster_url,
                     array_agg(se.hora) AS sessions
                 FROM
                     sessao AS se

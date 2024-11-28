@@ -9,6 +9,10 @@ class TotemSessionView(ViewSet):
 
     def retrieve(self, request, pk):
         date = request.query_params.get("data")
+        cnpj = request.query_params.get("cnpj")
+
+        if not date or not cnpj:
+            return Response({"error": "Missing required parameters"}, status=400)
 
         query = """
         SELECT
@@ -17,6 +21,7 @@ class TotemSessionView(ViewSet):
             f.duracao,
             f.class_ind,
             f.descricao,
+            f.poster_url,
             s.numero AS sessao_numero,
             s.hora,
             s.leg_ou_dub AS eh_dublado,
@@ -27,11 +32,11 @@ class TotemSessionView(ViewSet):
         FROM sessao AS s
         INNER JOIN filme AS f ON s.filme_id = f.id
         INNER JOIN sala AS sa ON s.sala_id = sa.numero
-        WHERE sa.numero = %s AND s.data = %s
+        WHERE f.id = %s AND s.data = %s AND sa.cinema_id = %s
         ORDER BY sa.numero, s.leg_ou_dub, s.hora
         """
 
-        raw_data = RawSQLHelper.execute_query(query, [pk, date])
+        raw_data = RawSQLHelper.execute_query(query, [pk, date, cnpj])
 
         if not raw_data:
             return Response({"error": "No sessions found"}, status=404)
