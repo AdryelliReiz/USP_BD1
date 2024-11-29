@@ -48,6 +48,7 @@ class TotemSessionView(ViewSet):
             "duracao": raw_data[0]["duracao"],
             "class_ind": raw_data[0]["class_ind"],
             "descricao": raw_data[0]["descricao"],
+            "poster_url": raw_data[0]["poster_url"],
         }
 
         # Organize sessions by room

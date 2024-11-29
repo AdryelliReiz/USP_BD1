@@ -71,7 +71,7 @@ class TotemTicketView(ViewSet):
 
             ticket_data.append({
                 "nome": "Pontos",
-                "valor": round(valor_inteira, 2),
+                "valor": valor_inteira*10,
                 "tipo_pago": "pontos",
             })
 

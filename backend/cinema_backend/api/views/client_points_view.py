@@ -26,14 +26,5 @@ class ClientPointsView(ViewSet):
 
         historyList = RawSQLHelper.execute_query(historyQuery, [pk])
 
-        entry = []
 
-        # for point in historyList:
-        #     print(point[0])
-        #         if(point > 0):
-        #             entry.append([item[0], item[1], 'Acúmulo', item[2]])
-        #         else:
-        #             entry.append([item[0], item[1], 'Débito', item[2]])
-
-
-        return Response(scoreSum + entry)
+        return Response(scoreSum + historyList)
