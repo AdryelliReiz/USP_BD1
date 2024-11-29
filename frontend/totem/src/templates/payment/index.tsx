@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { InformationsContext } from "../../contexts/informationsProvider";
 import "./styles.scss";
+import api from "../../services/api";
 
 export default function Payment() {
   const { tabActive, setTabActive, selectedTickets, setPayment } = useContext(InformationsContext);
@@ -12,6 +13,12 @@ export default function Payment() {
     setPayment(type);
     setTabActive(tabActive + 1)
   }
+
+  async function handleConfirm() {
+    //const {status} = await api.post("/totem/payment", {});
+  }
+
+  console.log(selectedTickets)
 
   return (
     <div className="payment-container">
@@ -34,7 +41,7 @@ export default function Payment() {
         <div className="valor">
           <h4>Deadpool & Wolverine</h4>
           <h4>R$ {totalValue.toFixed(2)}</h4>
-          <h4>{totalPoints.toFixed(0)} pontos</h4>
+          {totalPoints > 0 && <h4>{totalPoints.toFixed(0)} pontos</h4>}
         </div>
 
         <div className="ingressos">
@@ -57,7 +64,7 @@ export default function Payment() {
               <button onClick={() => handlePayment("pix")}>PIX</button>
             </>
           ) : (
-            <button onClick={() => setTabActive(tabActive + 1)}>Confirmar</button>
+            <button onClick={handleConfirm}>Confirmar</button>
           )}
         </div>
 

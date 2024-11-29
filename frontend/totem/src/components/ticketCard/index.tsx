@@ -5,8 +5,8 @@ import "./styles.scss";
 export interface ITicketCardProps {
     name: string; // Nome do ingresso
     value: number; // Valor do ingresso
-    type: string; // Tipo (monetário ou pontos)
-    onQuantityChange: (quantity: number) => boolean; // Callback para mudança de quantidade
+    type: "monetario" | "pontos"; // Tipo (monetário ou pontos)
+    onQuantityChange: (quantity: number, operation: "minus" | "plus") => boolean; // Callback para mudança de quantidade
 }
 
 const TicketCard: React.FC<ITicketCardProps> = ({ name, value, type, onQuantityChange }) => {
@@ -15,7 +15,7 @@ const TicketCard: React.FC<ITicketCardProps> = ({ name, value, type, onQuantityC
     const handleIncrement = () => {
         const newQuantity = quantity + 1;
         
-       if(onQuantityChange(newQuantity)) {
+       if(onQuantityChange(newQuantity, "plus")) {
             setQuantity(newQuantity);
         }
     };
@@ -23,7 +23,7 @@ const TicketCard: React.FC<ITicketCardProps> = ({ name, value, type, onQuantityC
     const handleDecrement = () => {
         if (quantity > 0) {
             const newQuantity = quantity - 1;
-            if(onQuantityChange(newQuantity)) {
+            if(onQuantityChange(newQuantity, "minus")) {
                 setQuantity(newQuantity);
             }
         }

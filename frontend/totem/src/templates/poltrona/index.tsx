@@ -28,6 +28,9 @@ const Poltrona = () => {
   };
 
   useEffect(() => {
+    // seta a poltrona selecionada para null
+    setSelectedSeats([]);
+
     async function fetchSets() {
       console.log(selectedSession)
       const { data } = await api.get(`/totem/seats/${selectedSession}/`);

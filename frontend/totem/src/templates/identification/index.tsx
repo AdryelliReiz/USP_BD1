@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./styles.scss";
 import { InformationsContext } from "../../contexts/informationsProvider";
 
@@ -14,6 +14,11 @@ export default function Identification() {
       setCPF(updatedCpf);
     }
   };
+
+  useEffect(() => {
+    // seta o CPF para null
+    setCPF("");
+  }, [])
 
   return (
     <div className="identification-container">

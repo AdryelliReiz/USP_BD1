@@ -23,6 +23,7 @@ type SessionsMovieData = {
     duracao: string;
     class_ind: number;
     descricao: string;
+    poster_url?: string;
   };
   sessions_by_room: SessionsData[]
 }
@@ -34,10 +35,6 @@ export default function Session() {
   const [filmData, setFilmData] = useState<SessionsMovieData>();
 
   useEffect(() => {
-    ///totem/sessions/1/
-    //data: 2023-10-01
-    //cnpj: 12345678901234
-
     async function fetchSessions() {
       console.log(`filme ${selectedMovie}`)
       const { data } = await api.get(`/totem/sessions/${selectedMovie}/`, {
@@ -101,10 +98,10 @@ export default function Session() {
         <div className="movie-details">
           {filmData && (
             <>
-              <img
-                src="https://lumiere-a.akamaihd.net/v1/images/tidalwave_payoff_poster_brazil_caf2354b.jpeg"
-                alt="Poster do filme Deadpool & Wolverine"
-              />
+              {
+                filmData.movie.poster_url ? <img src={filmData.movie.poster_url} alt="Poster do filme" />
+                : <img src="https://dummyimage.com/500x750/000/fff.jpg&text=Erro+na+imagem" alt="Poster do filme" />
+              }
               <div className="details">
                 <h3>{filmData.movie.titulo}</h3>
                 <p>
