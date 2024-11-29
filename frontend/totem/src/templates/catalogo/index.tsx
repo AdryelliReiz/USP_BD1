@@ -18,6 +18,7 @@ type sessionsMovieData = {
   fim_contrato: string;
   descricao: string;
   sessions: string[];
+  poster_url?: string;
 }
 
 const Cinema: React.FC = () => {
@@ -41,7 +42,7 @@ const Cinema: React.FC = () => {
     }
 
     fetchCinemas()
-  }, [])
+  }, [, selectedCinema])
 
   useEffect(() => {
     setFilms(sessions.filter((item: sessionsMovieData) => item.date === dateSelected));
@@ -76,7 +77,10 @@ const Cinema: React.FC = () => {
               )}
               className="film-poster-button"
             >
-              <img src="https://sm.ign.com/t/ign_br/screenshot/s/spider-man/spider-man-2002-poster-tobey-maguire-as-spider-man_nbcp.600.jpg" alt={film.titulo} className="film-poster" />
+              {film.poster_url ? <img src={film.poster_url} alt={film.titulo} className="film-poster" />
+              :   <img src="https://dummyimage.com/500x750/000/fff.jpg&text=Erro+na+imagem" alt={film.titulo} className="film-poster" />
+              }
+              
             </button>
             <p className="film-title">{film.titulo}</p>
             <div className="film-times">

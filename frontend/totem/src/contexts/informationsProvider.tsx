@@ -1,7 +1,7 @@
 import React, { createContext, useState, ReactNode } from 'react';
 
 // Interface para ingressos selecionados
-interface SelectedTicket {
+export interface SelectedTicket {
     name: string; // Nome do ingresso
     quantity: number; // Quantidade selecionada
     value: number; // Valor unitário
