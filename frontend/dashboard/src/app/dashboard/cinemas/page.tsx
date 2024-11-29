@@ -63,7 +63,7 @@ export default function CinemasPage(){
         setCinemaSelected(cinemaIndex);
         setModalIsOpen(!modalIsOpen);
     }
-
+  
     useEffect(() => {
         async function searchAllCinemas() {
             const { data, status } = await api.get('/admin/cinemas?search=');

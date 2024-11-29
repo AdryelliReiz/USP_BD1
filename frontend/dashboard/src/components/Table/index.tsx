@@ -10,7 +10,6 @@ export default function Table({
     columns,
     data 
 }: ITableProps) {
-    console.log(data)
     return (
         <table>
             <thead>
