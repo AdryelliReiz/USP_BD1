@@ -77,7 +77,7 @@ export default function FilmPage({
                     <div className="dash-content">
                         <div className="film-container">
                             <div className="film-poster">
-                                <img src={cover ? URL.createObjectURL(cover) : filmData.capa} alt={filmData.titulo} />
+                                <img src={cover ? URL.createObjectURL(cover as Blob) : filmData.capa} alt={filmData.titulo} />
 
                                 <input type="file" id="imageUpload" onChange={handleImageUpload} />
 

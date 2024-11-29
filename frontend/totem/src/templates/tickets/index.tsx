@@ -24,6 +24,7 @@ export default function Tickets() {
    
 
     const updateSelection = (id: number, quantity: number, operation: "minus" | "plus") => {
+        if(allTickets[id].tipo_pago === "pontos" && pontos < quantity*allTickets[id].valor) return false;
 
         // Verifica se a quantidade fornecida é válida (não pode ser negativa)
         if (quantity < 0) return false;

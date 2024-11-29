@@ -4,7 +4,7 @@ import "./styles.scss";
 type ReportCardProps = {
     title: string;
     content: React.ReactNode;
-    idChart?: boolean
+    isChart?: boolean
 }
 
 export default function ReportCard({ title, content, isChart }: ReportCardProps) {

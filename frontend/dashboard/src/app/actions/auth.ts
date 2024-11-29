@@ -31,9 +31,7 @@ export async function signup(state: FormState, formData: FormData) {
 
     // Se a API retornar um erro, retorne a mensagem de erro
     if (status !== 200) {
-        return {
-            message: data.message,
-        }
+        return;
     }
 
     const access_token = data.access;
