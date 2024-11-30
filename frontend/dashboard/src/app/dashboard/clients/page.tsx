@@ -2,70 +2,63 @@
 
 import Table from "@/components/Table";
 import { useSession } from "@/context/sessionContext";
+import api from "@/services/api";
+import { useEffect, useState } from "react";
 import { BiSearch, BiTrash } from "react-icons/bi";
 
-const clientsData = [
-    {
-        //nome, CPF, e-mail, telefone, endereço e saldo pontos
-        cpf: "000.000.000-00",
-        nome: "Adryelli Reis",
-        email: "adry@gmail.com",
-        telefone: "0000-0000",
-        endereco: "Rua das Flores, 123",
-        saldoPontos: 1000
-    },
-    {
-        cpf: "000.000.000-01",
-        nome: "João da Silva",
-        email: "joao@gmail.com",
-        telefone: "1111-1111",
-        endereco: "Rua das Flores, 123",
-        saldoPontos: 600
-    },
-    {
-        cpf: "000.000.000-02",
-        nome: "Maria da Silva",
-        email: "maria@gmail.com",
-        telefone: "2222-2222",
-        endereco: "Rua das Flores, 123",
-        saldoPontos: 360
-    },
-    {
-        cpf: "000.000.000-03",
-        nome: "José da Silva",
-        email: "jose@gmail.com",
-        telefone: "3333-3333",
-        endereco: "Rua das Flores, 123",
-        saldoPontos: 280
-    },
-    {
-        cpf: "000.000.000-04",
-        nome: "Ana da Silva",
-        email: "ana@gmail.com",
-        telefone: "4444-4444",
-        endereco: "Rua das Flores, 123",
-        saldoPontos: 450
-    },
-    {
-        cpf: "000.000.000-05",
-        nome: "Carlos da Silva",
-        email: "carlos@gmail.com",
-        telefone: "5555-5555",
-        endereco: "Rua das Flores, 123",
-        saldoPontos: 100
-    },
-    {
-        cpf: "000.000.000-06",
-        nome: "Antônio da Silva",
-        email: "antonio@gmail.com",
-        telefone: "6666-6666",
-        endereco: "Rua das Flores, 123",
-        saldoPontos: 500
-    }
-]
+type ClientData = {
+    nome: string;
+    sobrenome: string;
+    cpf: string;
+    email: string;
+    telefone: number;
+    rua: string;
+    n_end: number;
+    complemento: string | null;
+    saldo_pontos: number;
+}
 
 export default function ClientsPage(){
     const { sessionUser } = useSession();
+
+    const [clientsData, setClientsData] = useState<ClientData[]>([]);
+
+    const [searchName, setSearchName] = useState('');
+    const [searchLastName, setSearchLastName] = useState('');
+    const [searchCpf, setSearchCpf] = useState('');
+    const [searchEmail, setSearchEmail] = useState('');
+    const [searchAddress, setSearchAddress] = useState('');
+    
+
+    useEffect(() => {
+        async function searchAllCinemas() {
+            const { data, status } = await api.get('/admin/clients/?nome_cliente=&sobrenome_cliente=&cpf_cliente=&email_cliente&rua_cliente=', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionUser?.access_token}`
+                }
+            });
+
+            if (status === 200){
+                setClientsData(data);
+            }
+        }
+
+        searchAllCinemas()
+    },[sessionUser?.access_token]);
+
+    async function searchClients(){
+        const { data, status } = await api.get(`/admin/clients/?nome_cliente=${searchName}&sobrenome_cliente=${searchLastName}&cpf_cliente=${searchCpf}&email_cliente=${searchEmail}&rua_cliente=${searchAddress}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionUser?.access_token}`
+            }
+        });
+
+        if (status === 200){
+            setClientsData(data);
+        }
+    }
     
     return (
         <section>
@@ -80,9 +73,12 @@ export default function ClientsPage(){
                         <h4>Procurando algo em especifico</h4>
                         <div className="dash-actions">
                             <div className="search-container">
-                                <input type="text" placeholder="Buscar cliente" />
-                                <button className="search-btn" >
-                                    Buscar
+                                <input type="text" placeholder="Nome" onChange={(e) => setSearchName(e.target.value)} />
+                                <input type="text" placeholder="Sobrenome" onChange={(e) => setSearchLastName(e.target.value)} />
+                                <input type="text" placeholder="CPF" onChange={(e) => setSearchCpf(e.target.value)} />
+                                <input type="text" placeholder="E-mail" onChange={(e) => setSearchEmail(e.target.value)} />
+                                <input type="text" placeholder="Endereço" onChange={(e) => setSearchAddress(e.target.value)} />
+                                <button onClick={searchClients} className="search-btn" >
                                     <BiSearch size={20} />
                                 </button>
                             </div>
@@ -95,8 +91,8 @@ export default function ClientsPage(){
                                 employee.cpf,
                                 employee.email,
                                 employee.telefone,
-                                employee.endereco,
-                                employee.saldoPontos,
+                                (employee.rua + ', ' + employee.n_end + (employee.complemento ? ', ' + employee.complemento : '')),
+                                employee.saldo_pontos,
                                 
                                 <div key={employee.cpf} className="td-actions" >
                                     <button key="delete">

@@ -29,7 +29,10 @@ export default function CinemasPage(){
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [cinemasData, setCinemasData] = useState<ICinemaData[]>([]);
     const [cinemaSelected, setCinemaSelected] = useState(0);
-    const [search, setSearch] = useState('');
+    const [searchNome, setSearchNome] = useState('');
+    const [searchCNPJ, setSearchCNPJ] = useState('');
+    const [searchGerente, setSearchGerente] = useState('');
+    const [searchRua, setSearchRua] = useState('');
 
     // Estados de edição de dados do cinema selecionado
     const [nome, setNome] = useState('');
@@ -66,7 +69,12 @@ export default function CinemasPage(){
   
     useEffect(() => {
         async function searchAllCinemas() {
-            const { data, status } = await api.get('/admin/cinemas?search=');
+            const { data, status } = await api.get('/admin/cinemas/?nome_cinema=&cnpj=&nome_gerente=&rua_cinema=', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionUser?.access_token}`
+                }
+            });
 
             if (status === 200){
                 setCinemasData(data);
@@ -74,10 +82,10 @@ export default function CinemasPage(){
         }
 
         searchAllCinemas()
-    },[]);
+    },[sessionUser?.access_token]);
 
     async function searchCinemas(){
-        const { data, status } = await api.get(`/admin/cinemas?search=${search}`, {
+        const { data, status } = await api.get(`/admin/cinemas?nome_cinema=${searchNome}&cnpj=${searchCNPJ}&nome_gerente=${searchGerente}&rua_cinema=${searchRua}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${sessionUser?.access_token}`
@@ -121,12 +129,14 @@ export default function CinemasPage(){
                     </div>
 
                     <div className="dash-content">
-                        <h4>Procurando algo em especifico</h4>
+                        <h4>Filtre por dados específicos</h4>
                         <div className="dash-actions">
                             <div className="search-container">
-                                <input type="text" placeholder="Buscar cinema" value={search} onChange={(e) => setSearch(e.target.value)} />
+                                <input type="text" placeholder="Nome do Cinema" value={searchNome} onChange={(e) => setSearchNome(e.target.value)} />
+                                <input type="text" placeholder="CNPJ" value={searchCNPJ} onChange={(e) => setSearchCNPJ(e.target.value)} />
+                                <input type="text" placeholder="Nome do Gerente" value={searchGerente} onChange={(e) => setSearchGerente(e.target.value)} />
+                                <input type="text" placeholder="Rua" value={searchRua} onChange={(e) => setSearchRua(e.target.value)} />
                                 <button onClick={searchCinemas} className="search-btn" >
-                                    Buscar
                                     <BiSearch size={20} />
                                 </button>
                             </div>

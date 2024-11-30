@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useSession } from "@/context/sessionContext";
 import z from 'zod';
+import api from "@/services/api";
 
 
 export default function NewCinemaPage() {
@@ -15,6 +16,33 @@ export default function NewCinemaPage() {
     const [address, setAddress] = useState('');
     const [number, setNumber] = useState<number>();
     const [complement, setComplement] = useState('');
+
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+
+        const cinemaSchema = z.object({
+            name: z.string().nonempty(),
+            cnpj: z.string().nonempty(),
+            phone: z.string().nonempty(),
+            cep: z.string().nonempty(),
+            address: z.string().nonempty(),
+            number: z.number(),
+            complement: z.string().nonempty(),
+        });
+
+        const cinemaData = cinemaSchema.parse({
+            name,
+            cnpj,
+            phone,
+            cep,
+            address,
+            number,
+            complement
+        });
+
+        // Enviar requisição para a API
+        //await api.post('/cinemas', cinemaData);
+    }
 
     return (
         <section>

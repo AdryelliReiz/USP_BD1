@@ -2,73 +2,29 @@
 
 import Table from "@/components/Table";
 import { useSession } from "@/context/sessionContext";
+import api from "@/services/api";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiPlus, BiSearch, BiTrash, BiEdit } from "react-icons/bi";
 import {MdClose} from "react-icons/md";
 
-const employeesData = [
-    {
-        cpf: "000.000.000-00",
-        nome: "Adryelli Reis",
-        tipo: "Admin",
-        cinema: "Cinemark",
-        dataInicio: "01/01/2021",
-        emailCorporativo: "joaodasilva@gmail.com",
-    },
-    {
-        cpf: "000.000.000-01",
-        nome: "João da Silva",
-        tipo: "Gerente",
-        cinema: "Cinemark",
-        dataInicio: "01/01/2021",
-        emailCorporativo: "joaodasilva@gmail.com",
-    },
-    {
-        cpf: "000.000.000-02",
-        nome: "Maria da Silva",
-        tipo: "Gerente",
-        cinema: "Cinepolis",
-        dataInicio: "01/01/2021",
-        emailCorporativo: "mariadasilva@gmail.com",
-    },
-    {
-        cpf: "000.000.000-03",
-        nome: "José da Silva",
-        tipo: "Funcionário",
-        cinema: "Cinemark",
-        dataInicio: "01/01/2021",
-        emailCorporativo: null,
-    },
-    {
-        cpf: "000.000.000-04",
-        nome: "Ana da Silva",
-        tipo: "Funcionário",
-        cinema: "Cinemark",
-        dataInicio: "01/01/2021",
-        emailCorporativo: null,
-    },
-    {
-        cpf: "000.000.000-05",
-        nome: "Carlos da Silva",
-        tipo: "Funcionário",
-        cinema: "Cinemark",
-        dataInicio: "01/01/2021",
-        emailCorporativo: null,
-    },
-    {
-        cpf: "000.000.000-06",
-        nome: "Antônio da Silva",
-        tipo: "Funcionário",
-        cinema: "Cinemark",
-        dataInicio: "01/01/2021",
-        emailCorporativo: null,
-    },
-]
+type Employee = {
+    cpf: string;
+    nome: string;
+    tipo_funcionario: string;
+    cinema_vinculado: string;
+    data_contratado: string;
+    email_corporativo: string;
+}
 
 export default function EmployeesPage(){
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [employeeSelected, setEmployeeSelected] = useState(NaN);
+    const [employeesData, setEmployeesData] = useState<Employee[]>([]);
+
+    const [searchName, setSearchName] = useState('');
+    const [searchType, setSearchType] = useState('');
+    const [searchCpf, setSearchCpf] = useState('');
     // dados do funcionário selecionado
     const [name, setName] = useState('');
     const [cinema, setCinema] = useState('');
@@ -81,15 +37,45 @@ export default function EmployeesPage(){
 
         if(!isNaN(employeeIndex)){
             setName(employeesData[employeeIndex].nome);
-            setCinema(employeesData[employeeIndex].cinema);
-            if(employeesData[employeeIndex].tipo === 'Admin'){
-                setEmail(employeesData[employeeIndex].emailCorporativo || '');
+            setCinema(employeesData[employeeIndex].cinema_vinculado);
+            if(employeesData[employeeIndex].tipo_funcionario === 'Administrador'){
+                setEmail(employeesData[employeeIndex].email_corporativo || '');
                 setPassword('');
             }
         }
 
         setEmployeeSelected(employeeIndex);
         setModalIsOpen(!modalIsOpen);
+    }
+
+    useEffect(() => {
+        async function searchAllCinemas() {
+            const { data, status } = await api.get('/admin/employees/?nome=&tipo=&cpf=', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionUser?.access_token}`
+                }
+            });
+
+            if (status === 200){
+                setEmployeesData(data);
+            }
+        }
+
+        searchAllCinemas()
+    },[sessionUser?.access_token]);
+
+    async function searchEmployees(){
+        const { data, status } = await api.get(`/admin/employees/?nome=${searchName}&tipo=${searchType}&cpf=${searchCpf}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionUser?.access_token}`
+            }
+        });
+
+        if (status === 200){
+            setEmployeesData(data);
+        }
     }
     
     return (
@@ -105,8 +91,15 @@ export default function EmployeesPage(){
                         <h4>Procurando algo em especifico</h4>
                         <div className="dash-actions">
                             <div className="search-container">
-                                <input type="text" placeholder="Buscar funcionário" />
-                                <button className="search-btn" >
+                                <input type="text" placeholder="Nome" value={searchName} onChange={(e) => setSearchName(e.target.value)} />
+                                <input type="text" placeholder="CPF" value={searchCpf} onChange={(e) => setSearchCpf(e.target.value)} />
+                                <select value={searchType} onChange={(e) => setSearchType(e.target.value)}>
+                                    <option value="">Tipo</option>
+                                    <option value="Comum">Funcionario Comum</option>
+                                    <option value="admin">Administrador</option>
+                                    <option value="Gerente">Gerente</option>
+                                </select>
+                                <button onClick={searchEmployees} className="search-btn" >
                                     Buscar
                                     <BiSearch size={20} />
                                 </button>
@@ -124,10 +117,10 @@ export default function EmployeesPage(){
                             data={employeesData.map((employee, index) => [
                                 employee.nome,
                                 employee.cpf,
-                                employee.tipo,
-                                employee.cinema,
-                                employee.dataInicio,
-                                employee.emailCorporativo,
+                                employee.tipo_funcionario,
+                                employee.cinema_vinculado,
+                                employee.data_contratado,
+                                employee.email_corporativo,
                                 
                                 <div key={employee.cpf} className="td-actions" >
                                     <button key="edit" onClick={() => toggleModal(index)}>
@@ -147,7 +140,7 @@ export default function EmployeesPage(){
                             <div className="modal-content">
                                 <div className="modal-header">
                                     <div>
-                                        <h3>Editar dados de um {employeesData[employeeSelected].tipo}</h3>
+                                        <h3>Editar dados de um {employeesData[employeeSelected].tipo_funcionario}</h3>
                                     </div>
 
                                     <button onClick={() => toggleModal(NaN)} >
@@ -162,12 +155,12 @@ export default function EmployeesPage(){
                                             <input type="text" id="nome" value={name} onChange={(e) => setName(e.target.value)}/>
                                         </div>
 
-                                        {employeesData[employeeSelected].tipo === 'Funcionário' && (
+                                        {employeesData[employeeSelected].tipo_funcionario === 'Funcionario Comum' && (
                                             <div className="input-group">
                                                 <label htmlFor="cinema">Ciname</label>
                                                 <select id="gerente" value={cinema} onChange={(e) => setCinema(e.target.value)}>
-                                                    <option value={employeesData[employeeSelected].cinema} disabled>
-                                                        {employeesData[employeeSelected].cinema} (Gerente atual)
+                                                    <option value={employeesData[employeeSelected].cinema_vinculado} disabled>
+                                                        {employeesData[employeeSelected].cinema_vinculado} (Gerente atual)
                                                     </option>
                                                     <option value="Cinemark">Cinemark</option>
                                                     <option value="Cinepolis">Cinepolis</option>
@@ -176,8 +169,8 @@ export default function EmployeesPage(){
                                             </div>
                                         )}
 
-                                        {(employeesData[employeeSelected].tipo === 'Admin' ||
-                                        employeesData[employeeSelected].tipo === 'Gerente')  && (
+                                        {(employeesData[employeeSelected].tipo_funcionario === 'Administrador' ||
+                                        employeesData[employeeSelected].tipo_funcionario === 'Gerente')  && (
                                             <>
                                                 <div className="input-group">
                                                     <label htmlFor="email">Email corporativo</label>

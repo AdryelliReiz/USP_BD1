@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useSession } from "@/context/sessionContext";
 import { File } from "buffer";
+import api from "@/services/api";
 
 
 export default function FilmPage() {
@@ -13,7 +14,7 @@ export default function FilmPage() {
     const [director, setDirector] = useState('');
     const [genre, setGenre] = useState<string[]>([]);
     const [classification, setClassification] = useState('');
-    const [duration, setDuration] = useState<number>();
+    const [duration, setDuration] = useState('');
     const [description, setDescription] = useState('');
     const [language, setLanguage] = useState('');
     const [dubbed, setDubbed] = useState(false);
@@ -32,9 +33,32 @@ export default function FilmPage() {
         setCover(file as unknown as File);
     };
 
-    //useEffect(() => {
-    //    genre.map((genre) => { console.log(genre) })
-    //}, [genre]);
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+
+        const filmData = {
+            titulo: name,
+            ano: year,
+            diretor: director,
+            class_ind: classification,
+            duracao: duration,
+            eh_dub: dubbed,
+            fim_contato: contract,
+            descricao: description,
+        };
+
+        // Enviar requisição para a API
+        const {status} = await api.post('/admin/movies/', JSON.stringify(filmData), {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionUser?.access_token}`
+            }
+        });
+
+        if(status == 201) {
+            alert('Filme cadastrado com sucesso!');
+        }
+    }
 
     return (
         <section>
@@ -91,7 +115,8 @@ export default function FilmPage() {
 
                                     <div className="input-group">
                                         <label htmlFor="duration">Duração</label>
-                                        <input type="number" id="duration" value={duration} onChange={(e) => setDuration(Number(e.target.value))} />
+                                        {/* Input do tipo hora */}
+                                        <input type="time" id="duration" value={duration} onChange={(e) => setDuration(e.target.value)} />
                                     </div>
 
                                     <div className="input-group">
@@ -115,7 +140,7 @@ export default function FilmPage() {
                                     </div>
                                 </form>
 
-                                <button>Salvar</button>
+                                <button onClick={(e) => handleSubmit(e)} >Salvar</button>
                             </div>
                         </div>
                     </div>

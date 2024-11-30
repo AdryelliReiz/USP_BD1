@@ -2,91 +2,62 @@
 
 import ReportCard from "@/components/ReportCard";
 import { useSession } from "@/context/sessionContext";
-import { useState } from "react";
+import api from "@/services/api";
+import { useEffect, useState } from "react";
 import { Bar, BarChart, CartesianGrid, Legend, Pie, PieChart, ResponsiveContainer, Sector, Tooltip, XAxis, YAxis } from "recharts";
 
-const data = {
-    montlyBilling: 540120,
-    lastMonthBilling: 742980,
-    yearBilling: 2520080,
-    cinemasBilling: [
-        {
-            name: "Cineflix",
-            Faturamento: 120000
-        },
-        {
-            name: "Cineart",
-            Faturamento: 150000
-        },
-        {
-            name: "Cinemark",
-            Faturamento: 180000
-        },
-        {
-            name: "CineCB",
-            Faturamento: 90000
-        },
-        {
-            name: "CineDASI",
-            Faturamento: 250000
-        }
-    ],
-    tickets: [
-        { name: 'Inteira', value: 321 },
-        { name: 'Meia', value: 454 },
-        { name: 'Pontos Club', value: 63 }
-    ],
-    topMovies: [
-        {
-            name: "Deadpool & Wolverine",
-            utilization: 86,
-            gender: "Ação/Comédia",
-            invoicing: 120250,
-            sessions: 1421,
-        },
-        {
-            name: "Homem-Aranha",
-            utilization: 92,
-            gender: "Ação/Comédia",
-            invoicing: 120250,
-            sessions: 1421,
-        },
-        {
-            name: "Vingadores",
-            utilization: 91,
-            gender: "Ação/Comédia",
-            invoicing: 120250,
-            sessions: 1421,
-        },
-        {
-            name: "Flash",
-            utilization: 69,
-            gender: "Ação/Comédia",
-            invoicing: 120250,
-            sessions: 1421,
-        },
-        {
-            name: "Avatar",
-            utilization: 74,
-            gender: "Ação/Comédia",
-            invoicing: 120250,
-            sessions: 1421,
-        }
-    ]
-}
+type ReportResponse = {
+    faturamento_mes_anterior: number | null;
+    faturamento_mes_atual: number;
+    faturamento_por_cinema: {
+        cnpj: string;
+        nome: string;
+        faturamento: number;
+    }[];
+    ingressos_mais_vendidos: {
+        tipo_ingresso: string;
+        vendidos: number;
+    }[];
+    filmes_mais_vendidos: {
+        titulo: string;
+        genero: string | null;
+        faturamento: number;
+        sessoes_exibidas: number;
+        aproveitamento: number | null;
+    }[];
+};
 
 export default function ReportsPage() {
     const { sessionUser } = useSession();
     const [activeIndex, setActiveIndex] = useState(0);
+    const [reports, setReports] = useState<ReportResponse | null>(null);
     
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function onPieEnter(_: any, index: number) {
         setActiveIndex(index);
     };
 
+    useEffect(() => {
+        async function searchAllCinemas() {
+            const { data, status } = await api.get('/admin/reports/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionUser?.access_token}`
+                }
+            });
+
+            if (status === 200){
+                setReports(data);
+                console.log(data)
+            }
+        }
+
+        searchAllCinemas()
+    },[sessionUser?.access_token]);
+
     return (
         <section>
-            {sessionUser ? (
+            {sessionUser && reports ? (
                 <div className="dash-container">
                     <div className="dash-header">
                         <h2>Relatórios</h2>
@@ -98,23 +69,17 @@ export default function ReportsPage() {
                                 <ReportCard 
                                     title="Faturamento do mês anterior" 
                                     content={
-                                        <p><strong>R$ {data.lastMonthBilling.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
+                                        <p><strong>R$ {(reports?.faturamento_mes_anterior ?? 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
                                     }
                                 />
 
                                 <ReportCard 
                                     title="Faturamento do mês atual" 
                                     content={
-                                        <p><strong>R$ {data.montlyBilling.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
+                                        <p><strong>R$ {reports?.faturamento_mes_atual.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
                                     }
                                 />
 
-                                <ReportCard 
-                                    title="Faturamento do ano" 
-                                    content={
-                                        <p><strong>R$ {data.yearBilling.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
-                                    }
-                                />
                             </div>
 
                             <div className="reports-grid grid-2 charts-container">
@@ -125,7 +90,7 @@ export default function ReportsPage() {
                                             <BarChart
                                             width={400}
                                             height={200}
-                                            data={data.cinemasBilling}
+                                            data={reports?.faturamento_por_cinema}
                                             margin={{
                                                 top: 20,
                                                 right: 30,
@@ -152,7 +117,7 @@ export default function ReportsPage() {
                                             <Pie
                                                 activeIndex={activeIndex}
                                                 activeShape={renderActiveShape}
-                                                data={data.tickets}
+                                                data={reports?.ingressos_mais_vendidos}
                                                 cx="50%"
                                                 cy="50%"
                                                 innerRadius={60}
@@ -182,14 +147,14 @@ export default function ReportsPage() {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {data.topMovies.map((movie, index) => (
+                                                {reports?.filmes_mais_vendidos.map((movie, index) => (
                                                     <tr key={index}>
-                                                        <td>{movie.name}</td>
-                                                        <td>{movie.utilization}%</td>
-                                                        <td>{movie.gender}</td>
-                                                        <td>{movie.invoicing.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                                                        <td>{movie.sessions}</td>
-                                                    </tr>
+                                                    <td>{movie.titulo}</td>
+                                                    <td>{movie.aproveitamento ? movie.aproveitamento.toFixed(2) : 'N/A'}%</td>
+                                                    <td>{movie.genero}</td>
+                                                    <td>{movie.faturamento ? movie.faturamento.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0,00'}</td>
+                                                    <td>{movie.sessoes_exibidas}</td>
+                                                </tr>
                                                 ))}
                                             </tbody>
                                         </table>
