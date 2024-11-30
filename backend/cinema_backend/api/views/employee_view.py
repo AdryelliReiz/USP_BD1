@@ -101,7 +101,7 @@ class EmployeeView(ViewSet):
                     raise ValueError("E-mail e senha são obrigatórios para Gerente.")
                 insert_gerente_query = "INSERT INTO gerente (cpf, email, senha) VALUES (%s, %s, %s)"
                 RawSQLHelper.execute_query(insert_gerente_query, [cpf, email, senha])
-            elif tipo.lower() == "admin":
+            elif tipo.lower() == "administrador":
                 if not email or not senha:
                     raise ValueError("E-mail e senha são obrigatórios para Administrador.")
                 insert_admin_query = "INSERT INTO administrador (cpf, email, senha) VALUES (%s, %s, %s)"

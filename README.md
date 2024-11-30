@@ -18,7 +18,7 @@ Esse sistema atende às necessidades de uma rede de cinemas moderna, facilitando
 
 ### Back-end
 - **[API](https://github.com/AdryelliReiz/USP_BD1/tree/main/backend)**: API responsável por realizar consultas ao banco de dados e fornecer os dados necessários ao sistema.
-- **Tecnologias**: Python e PostgreSQL.
+- **Tecnologias**: Django utilizando Python e PostgreSQL.
 
 ### Documentação
 - **[Documentação](https://github.com/AdryelliReiz/USP_BD1/tree/main/docs)**: Inclui os arquivos referentes ao DER (Diagrama Entidade-Relacionamento) e ao modelo lógico do banco de dados, oferecendo uma visão clara da estrutura do sistema.
@@ -40,6 +40,38 @@ USP_BD1/
     └── website/            # Interface de cadastro e vizualização dos dados do cliente
 
 ```
+
+## 🚀 Como Executar o Projeto
+
+### Pré-requisitos
+
+- **[Docker](https://www.docker.com/)**: Ferramenta que facilita a criação, implantação e execução de aplicativos usando contêiner
+- **[Docker Compose](https://docs.docker.com/compose/)**: Ferramenta para definir e executar aplicativos Docker multi-container
+- **[Git](https://git-scm.com/)**: Sistema de controle de versão distribuído
+
+### Execução
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/AdryelliReiz/USP_BD1.git
+```
+
+2. Acesse o diretório do projeto:
+```bash
+cd USP_BD1
+```
+
+3. Execute o comando para subir toda a infraestrutura:
+```bash
+docker compose up -d
+```
+
+4. Acesse os endereços abaixo para acessar as interfaces:
+- **Totem**: [http://localhost:3000](http://localhost:3000)
+- **Website**: [http://localhost:3001](http://localhost:3001)
+- **Dashboard**: [http://localhost:3002](http://localhost:3002)
+
+
 ## 👥 Equipe de Desenvolvimento
 
 - **[Adryelli Reis dos Santos](https://github.com/AdryelliReiz)**

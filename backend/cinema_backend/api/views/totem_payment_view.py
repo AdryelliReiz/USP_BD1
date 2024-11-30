@@ -15,7 +15,7 @@ class TotemPaymentView(ViewSet):
 
         data = request.data
         cpf = request.data.get("cpf")
-        session_id = request.data.get("sala_id")
+        session_id = request.data.get("sessao_id")
         tickets = request.data.get("poltronas", [])
         payment_method = request.data.get("forma_pagamento")
 

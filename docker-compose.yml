@@ -21,16 +21,16 @@ services:
     networks:
       - app_network
 
-  # dashboard:
-  #   build:
-  #     context: ./frontend/dashboard
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "3002:3000"
-  #   depends_on:
-  #     - backend
-  #   networks:
-  #     - app_network
+  dashboard:
+    build:
+      context: ./frontend/dashboard
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3000"
+    depends_on:
+      - backend
+    networks:
+      - app_network
 
   backend:
     build:

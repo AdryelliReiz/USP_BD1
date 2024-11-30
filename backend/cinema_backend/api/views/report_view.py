@@ -9,9 +9,6 @@ class ReportView(viewsets.ViewSet):
 
     def list(self, request):
         permission_classes = [IsAdmin]
-
-    def get(self, request):
-
          # 1. Faturamento do mes anterior
         last_month = (datetime.now() - timedelta(days=30)).month
         current_year = datetime.now().year
@@ -83,7 +80,7 @@ class ReportView(viewsets.ViewSet):
         LEFT JOIN genero g ON g.id = gf.genero_id
         WHERE f.fim_contrato IS NULL OR f.fim_contrato > NOW()
         GROUP BY f.titulo, g.nome
-        ORDER BY faturamento DESC
+        ORDER BY faturamento DESC NULLS LAST
         """
         top_movies = RawSQLHelper.execute_query(query_top_movies)
 

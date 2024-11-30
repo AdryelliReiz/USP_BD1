@@ -33,7 +33,7 @@ CREATE TABLE "ingresso" (
   "data" date,
   "hora" time,
   "forma_pagamento" varchar(50),
-  "cliente_id" char(11)
+  "cliente_id" char(11) NULL
 );
 
 CREATE TABLE "sessao" (

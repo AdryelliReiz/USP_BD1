@@ -3,7 +3,7 @@
 from django.db import migrations
 
 def load_sql_file(apps, schema_editor):
-    sql_file_path = 'schemas/cinema - DML.sql'
+    sql_file_path = 'schemas/cinema - DMLNew.sql'
     with open(sql_file_path, 'r') as f:
         sql_commands = f.read()
     schema_editor.execute(sql_commands)

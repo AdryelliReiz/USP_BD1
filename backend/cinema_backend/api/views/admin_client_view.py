@@ -7,13 +7,18 @@ from rest_framework import status
 class AdminClientView(ViewSet):
     permission_classes = [IsStaffOrAdmin]
     def list(self, request):
-        search = request.query_params.get("search")
+        nome = request.query_params.get("nome_cliente")
+        sobrenome = request.query_params.get("sobrenome_cliente")
+        cpf = request.query_params.get("cpf_cliente")
+        email = request.query_params.get("email_cliente")
+        rua = request.query_params.get("rua_cliente")
 
         query = """
                 SELECT
                 C.nome,
                 C.sobrenome,
                 C.cpf,
+                C.email,
                 C.telefone,
                 C.rua,
                 C.n_end,
@@ -25,12 +30,14 @@ class AdminClientView(ViewSet):
                 pontos AS P
                 ON C.cpf = P.cliente_id
                 WHERE C.nome ILIKE %s
-                OR C.cpf ILIKE %s
-                OR C.email ILIKE %s
+                AND C.sobrenome ILIKE %s
+                AND C.cpf ILIKE %s
+                AND C.email ILIKE %s
+                AND C.rua ILIKE %s
                 GROUP BY C.cpf
                 """
 
-        client_data = RawSQLHelper.execute_query(query, [f"%{search}%", f"%{search}%", f"%{search}%"])
+        client_data = RawSQLHelper.execute_query(query, [f"%{nome}%", f"%{sobrenome}%", f"%{cpf}%", f"%{email}%", f"%{rua}%"])
 
         print(client_data)
         return Response(client_data)
