@@ -2,13 +2,12 @@ import React, { createContext, useState, ReactNode } from 'react';
 
 // Interface para ingressos selecionados
 export interface SelectedTicket {
+    id: number; // ID do ingresso
     name: string; // Nome do ingresso
     quantity: number; // Quantidade selecionada
     value: number; // Valor unitário
     tipo: 'monetario' | 'pontos'; // Tipo do ingresso
 }
-type Payment = "credito" | "debito" | "pix" | null;
-
 // Interface do contexto
 interface InformationsContextProps {
     tabActive: number;
@@ -31,8 +30,6 @@ interface InformationsContextProps {
     setSelectedSessionTime: (sessionTime: string) => void;
     selectedSeats: string[];
     setSelectedSeats: (seats: string[]) => void;
-    payment: Payment;
-    setPayment: (payment: Payment) => void;
 }
 
 // Criação do contexto
@@ -54,7 +51,6 @@ export const InformationsProvider: React.FC<InformationsProviderProps> = ({ chil
     const [selectedSessionTime, setSelectedSessionTime] = useState<string>("");
     const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
     const [selectedTickets, setSelectedTickets] = useState<SelectedTicket[]>([]); // Ingressos selecionados
-    const [payment, setPayment] = useState<Payment>(null);
 
     return (
         <InformationsContext.Provider
@@ -78,9 +74,7 @@ export const InformationsProvider: React.FC<InformationsProviderProps> = ({ chil
                 selectedSessionTime,
                 setSelectedSessionTime,
                 selectedSeats,
-                setSelectedSeats,
-                payment,
-                setPayment
+                setSelectedSeats
             }}
         >
             {children}

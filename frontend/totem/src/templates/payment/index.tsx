@@ -4,21 +4,37 @@ import "./styles.scss";
 import api from "../../services/api";
 
 export default function Payment() {
-  const { tabActive, setTabActive, selectedTickets, setPayment } = useContext(InformationsContext);
+  const { tabActive, setTabActive, selectedTickets, selectedMovieName, CPF, selectedSession, selectedSeats } = useContext(InformationsContext);
 
   const totalValue = selectedTickets.filter((ticket) => ticket.tipo == "monetario").reduce((total, ticket) => total + ticket.quantity * ticket.value, 0);
   const totalPoints = selectedTickets.filter((ticket) => ticket.tipo == "pontos").reduce((total, ticket) => total + ticket.quantity * ticket.value, 0);
 
-  const handlePayment = (type: "credito" | "debito" | "pix" ) => {
-    setPayment(type);
+  async function handlePayment(type?: "credito" | "debito" | "pix" ) {
+
+    const data = {
+      cpf: CPF,
+      sessao_id: selectedSession,
+      poltronas: selectedSeats.map((seat, index) => ({
+        tipo: selectedTickets[index].id,
+        valor: selectedTickets[index].value,
+        poltrona_id: {
+          numero: parseInt(seat.split("-")[0]),
+          letra: seat.split("-")[1],
+        },
+      })),
+    }
+
+    console.log(data)
+
+    //envie data como body da requisição
+    const response = await api.post("/totem/payment/", JSON.stringify(data), {
+      headers: {
+      'Content-Type': 'application/json'
+      }
+    });
+    console.log(response)
     setTabActive(tabActive + 1)
   }
-
-  async function handleConfirm() {
-    //const {status} = await api.post("/totem/payment", {});
-  }
-
-  console.log(selectedTickets)
 
   return (
     <div className="payment-container">
@@ -39,7 +55,7 @@ export default function Payment() {
         <div className="divi"></div>
 
         <div className="valor">
-          <h4>Deadpool & Wolverine</h4>
+          <h4>{selectedMovieName}</h4>
           <h4>R$ {totalValue.toFixed(2)}</h4>
           {totalPoints > 0 && <h4>{totalPoints.toFixed(0)} pontos</h4>}
         </div>
@@ -64,7 +80,7 @@ export default function Payment() {
               <button onClick={() => handlePayment("pix")}>PIX</button>
             </>
           ) : (
-            <button onClick={handleConfirm}>Confirmar</button>
+            <button onClick={() => handlePayment()}>Confirmar</button>
           )}
         </div>
 

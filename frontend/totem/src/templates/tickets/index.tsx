@@ -55,7 +55,7 @@ export default function Tickets() {
             }).filter(Boolean); // Remove os tickets com quantidade zero.
         } else if (operation === "plus") {
             // Adiciona um novo ingresso se ele ainda não estiver na lista (somente ao adicionar).
-            updatedTickets = [...selectedTickets, { name: allTickets[id].nome, value: allTickets[id].valor, tipo: allTickets[id].tipo_pago, quantity: 1 }];
+            updatedTickets = [...selectedTickets, { id: id, name: allTickets[id].nome, value: allTickets[id].valor, tipo: allTickets[id].tipo_pago, quantity: 1 }];
         } else {
             // Não faz nada se tentarmos remover um ingresso que não existe.
             return false;
